@@ -1,4 +1,13 @@
-source .bashrc
+#
+# Source config common to all my shells
+#
+source .shellrc
+
+#
+# ZSH specific config below
+#
+
+
 
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/binaryluke/.oh-my-zsh
@@ -12,7 +21,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+# plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
