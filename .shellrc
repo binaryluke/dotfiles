@@ -5,7 +5,7 @@ alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 # List directories after cd
 c() {
   \cd $1;
-  ls;
+  ls -a;
 }
 alias cd="c"
 
