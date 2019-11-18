@@ -1,0 +1,21 @@
+" References
+" https://medium.com/actualize-network/how-to-learn-vim-a-four-week-plan-cd8b376a9b85
+" https://dougblack.io/words/a-good-vimrc.html
+
+let mapleader="," " leader is comma
+
+syntax enable " enable syntax processing
+colorscheme codedark " ~/.vim/colors/codedark.vim
+
+set tabstop=2 " number of visual spaces per tab
+set softtabstop=2 " number of spaces in tab when editing
+set expandtab " tabs are spaces
+
+set number " show line numbers
+
+set incsearch " search as characters are entered
+set hlsearch " highlight matches
+
+" turn off search highlight
+nnoremap <leader><space> :nohlsearch<CR>
+
