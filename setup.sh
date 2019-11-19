@@ -133,12 +133,34 @@ function change_shell_to_latest_bash {
       echo "Latest Bash shell successfully set as default for \"${user}\""
     else
       echo "Failed to set latest Bash as default shell"
+      exit 1
     fi 
   fi
 }
 
 function setup_symlinks {
-  echo "Not yet implemented: setup_symlinks"
+  echo "Setting up symlinks"
+
+  symlink "bash:bashrc" ${DOTFILES_REPO}/.bashrc ~/.bashrc
+  symlink "bash:bash_profile" ${DOTFILES_REPO}/.profile ~/.bash_profile
+  symlink "bash:profile" ${DOTFILES_REPO}/.profile ~/.profile
+
+  symlink "vim" ${DOTFILES_REPO}/.vim ~/.vim
+
+  echo "Symlinks setup complete"
+}
+
+function symlink() {
+  application=$1
+  the_dir=$2
+  the_link=$3
+
+  if rm -rf "$the_link" && ln -s "$the_dir" "$the_link"; then
+    echo "Symlinking for \"${application}\" done"
+  else
+    echo "Symlinking for \"${application}\" failed"
+    exit 1
+  fi
 }
 
 function setup_vim {
