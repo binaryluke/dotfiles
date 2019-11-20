@@ -7,6 +7,8 @@ main() {
   install_homebrew
   install_packages_with_brewfile
   change_shell_to_latest_bash
+  install_nvm # nvm doesn't support homebrew
+  install_latest_node_with_nvm
   setup_symlinks
   setup_vim
   setup_tmux
@@ -135,6 +137,51 @@ function change_shell_to_latest_bash {
       echo "Failed to set latest Bash as default shell"
       exit 1
     fi 
+  fi
+}
+
+function install_nvm {
+  echo "Installing nvm"
+  if [ -d "$HOME/.nvm" ]; then
+    echo "Nvm already installed"
+  else
+    git clone https://github.com/nvm-sh/nvm.git $HOME/.nvm &> /dev/null
+    if [ $? -eq 0 ]; then
+      git -C $HOME/.nvm checkout v0.35.1 &> /dev/null
+      if [ $? -eq 0 ]; then
+        echo "Latest version of nvm checkout out"
+      else
+        echo "Failed to checkout latest version of nvm"
+        exit 1
+      fi
+    else
+      echo "Failed to clone nvm repo"
+      exit 1
+    fi
+    echo "Successfully installed nvm"
+  fi
+}
+
+function install_latest_node_with_nvm {
+  echo "Installing latest node with nvm"
+  export NVM_DIR="$HOME/.nvm"
+  source $NVM_DIR/nvm.sh &> /dev/null
+  if [ $? -eq 0 ]; then
+    echo "Nvm sourced successfully"
+  else
+    echo "Failed to source nvm"
+    exit 1
+  fi
+  if nvm install node &> /dev/null; then
+    echo "Latest node installed"
+  else
+    echo "Failed to installed latest node"
+    exit 1
+  fi
+  if nvm alias default node &> /dev/null; then
+    echo "Latest node installed and set as the default"
+  else
+    echo "Failed to set latest node as default"
   fi
 }
 
