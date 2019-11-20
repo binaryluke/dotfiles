@@ -227,12 +227,12 @@ function install_vim_plugin() {
   else
     if git -C $DOTFILES_REPO/.vim/pack/main/start clone $git_url $name &> /dev/null; then
       echo "Vim plugin $name cloned successfully"
-      if vim -u NONE -c "helptags ~/.vim/pack/main/start/$name/doc" -c q; then
-        echo "Vim plugin $name successfully loaded help tags"
-      else
-        echo "Vim plugin $name failed to load help tags"
-        exit 1
-      fi
+#      if vim -u NONE -c "helptags ~/.vim/pack/main/start/$name/doc" -c q; then
+#        echo "Vim plugin $name successfully loaded help tags"
+#      else
+#        echo "Vim plugin $name failed to load help tags"
+#        exit 1
+#      fi
     else
       echo "Failed to clone vim plugin $name"
       exit 1
