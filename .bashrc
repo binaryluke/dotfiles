@@ -1,7 +1,3 @@
-# Dotfiles git management - credit: 
-# https://www.anand-iyer.com/blog/2018/a-simpler-way-to-manage-your-dotfiles.html
-alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-
 # List directories after cd
 c() {
   \cd $1;
@@ -34,3 +30,9 @@ create_prompt() {
   PS1="$EXIT_BG $EXIT_TEXT $TIME_BG $TIME_TEXT $DIR_BG $DIR_TEXT \e[0m\n\$ "
 }
 PROMPT_COMMAND=create_prompt
+
+# Nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
