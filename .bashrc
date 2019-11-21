@@ -10,6 +10,16 @@ c() {
 alias cd="c"
 
 alias g="git"
+alias gs="git status"
+alias ga="git add"
+alias gd="git diff"
+alias gdc="git diff --cached"
+alias gm="git merge"
+alias gf="git fetch"
+alias gr="git remote"
+alias gc="git commit"
+alias gco="git checkout"
+alias gp="git push"
 alias d="docker"
 alias dc="docker-compose"
 alias n="npm"
@@ -31,6 +41,6 @@ create_prompt() {
   local DIR_TEXT="\w"
   local DIR_BG="$COLOR_LIGHT_BLUE_BG"
 
-  PS1="$EXIT_BG $EXIT_TEXT $TIME_BG $TIME_TEXT $DIR_BG $DIR_TEXT \e[0m\n\$ "
+  PS1="\n$EXIT_BG $EXIT_TEXT $TIME_BG $TIME_TEXT $DIR_BG $DIR_TEXT \e[0m\n\$ "
 }
 PROMPT_COMMAND=create_prompt
