@@ -19,3 +19,16 @@ set hlsearch " highlight matches
 " turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
 
+" split navigation
+nnoremap <C-H> <C-W><C-H>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+
+" browse nerd tree
+nnoremap <leader>b :NERDTreeToggle<CR>
+
+" browse recent files
+"   then press q followed by number to open
+nnoremap <leader>r :browse oldfiles<CR>
+
