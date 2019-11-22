@@ -16,6 +16,8 @@ set number " show line numbers
 set incsearch " search as characters are entered
 set hlsearch " highlight matches
 
+set scrolloff=4 " Always keep a few lines above/below cursor at top/bottom of file
+
 " turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
 

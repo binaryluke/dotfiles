@@ -74,7 +74,7 @@ function clone_dotfiles_repo {
 function pull_latest_in_dotfiles_repo {
   notify "INFO" 1 "Pulling latest changes in ${1} repository"
   if git -C $1 pull origin master &> /dev/null; then
-    notify "SUCCESS" 1 "Pull successful in ${DOTFILES_REPO} repository"
+    notify "SUCCESS" 2 "Pull successful in ${DOTFILES_REPO} repository"
   else
     notify "FAIL" 1 "Please pull latest changes in ${1} repository manually"
   fi
@@ -84,7 +84,12 @@ function pull_latest_in_dotfiles_repo {
 function install_homebrew {
   notify "INFO" 0 "\nInstalling Homebrew"
   if hash brew 2>/dev/null; then
-    notify "INFO" 1 "Homebrew already exists"
+    notify "INFO" 1 "Homebrew already exists; updating"
+    if brew update &> /dev/null; then
+      notify "SUCCESS" 2 "Homebrew updated successfully"
+    else
+      notify "FAIL" 2 "Homebrew failed to update"
+    fi
   else
     url=https://raw.githubusercontent.com/Homebrew/install/master/install
     if yes | /usr/bin/ruby -e "$(curl -fsSL ${url})"; then
