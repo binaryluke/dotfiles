@@ -6,6 +6,7 @@ main() {
   clone_dotfiles_repo
   install_homebrew
   install_packages_with_brewfile
+  remove_packages_not_in_brewfile
   change_shell_to_latest_bash
   install_nvm # nvm doesn't support homebrew
   install_latest_node_with_nvm
@@ -110,6 +111,20 @@ function install_packages_with_brewfile {
       echo "Brewfile packages installation failed"
       exit 1
     fi
+  fi
+}
+
+function remove_packages_not_in_brewfile() {
+  echo "Removing Brew packages not listed in Brewfile"
+
+  if [ "$(brew bundle cleanup)" != "" ]; then
+    if brew bundle cleanup --force &> /dev/null; then
+      echo "Packages removed successfully"
+    else
+      echo "Failed to remove some packages"
+    fi
+  else
+    echo "No packages to remove"
   fi
 }
 
