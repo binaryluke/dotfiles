@@ -105,7 +105,7 @@ function install_packages_with_brewfile {
   if brew bundle check --file="$BREWFILE" &> /dev/null; then
     echo "Brewfile packages already installed"
   else
-    if brew bundle --file="$BREWFILE"; then
+    if brew bundle --file="$BREWFILE" &> /dev/null; then
       echo "Brewfile packages installation succeeded"
     else
       echo "Brewfile packages installation failed"
