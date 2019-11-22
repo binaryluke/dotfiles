@@ -16,6 +16,7 @@ brew "vim"
 brew "watchman"
 brew "youtube-dl"
 cask "amethyst"
+cask "docker"
 mas "Bear", id: 1091189122
 mas "Cardhop", id: 1290358394
 mas "Fantastical", id: 975937182

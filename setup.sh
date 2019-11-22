@@ -109,7 +109,7 @@ function install_packages_with_brewfile {
   if brew bundle check --file="$BREWFILE" &> /dev/null; then
     notify "INFO" 1 "Brewfile packages already installed"
   else
-    if brew bundle --file="$BREWFILE" &> /dev/null; then
+    if brew bundle --file="$BREWFILE"; then
       notify "SUCCESS" 1 "Brewfile packages installation succeeded"
     else
       notify "FAIL" 1 "Brewfile packages installation failed"
@@ -122,7 +122,7 @@ function remove_packages_not_in_brewfile() {
   notify "INFO" 0 "\nRemoving Brew packages not listed in Brewfile"
 
   if [ "$(brew bundle cleanup)" != "" ]; then
-    if brew bundle cleanup --force &> /dev/null; then
+    if brew bundle cleanup --force; then
       notify "SUCCESS" 1 "Packages removed successfully"
     else
       notify "FAIL" 1 "Failed to remove some packages"

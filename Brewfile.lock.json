@@ -218,11 +218,69 @@
             }
           }
         }
+      },
+      "python": {
+        "version": "3.7.5",
+        "bottle": {
+          "cellar": "/usr/local/Cellar",
+          "prefix": "/usr/local",
+          "files": {
+            "catalina": {
+              "url": "https://homebrew.bintray.com/bottles/python-3.7.5.catalina.bottle.tar.gz",
+              "sha256": "623d2a1110674974c0ea3ff0498c1ac865b858ba5293bdc29f3ce4dbd421fd42"
+            },
+            "mojave": {
+              "url": "https://homebrew.bintray.com/bottles/python-3.7.5.mojave.bottle.tar.gz",
+              "sha256": "bcbdc3612a10d06facca7ec9499265731d530c8273b1a2dc28f16258d4410552"
+            },
+            "high_sierra": {
+              "url": "https://homebrew.bintray.com/bottles/python-3.7.5.high_sierra.bottle.tar.gz",
+              "sha256": "32e080b97e0075d2563c1f454e6925dbdd57ad683b857fc2a42e46a0a30959f6"
+            }
+          }
+        }
       }
     },
     "cask": {
       "amethyst": {
         "version": "0.14.2"
+      },
+      "docker": {
+        "version": "2.1.0.5,40693"
+      }
+    },
+    "mas": {
+      "Bear": {
+        "id": "1091189122",
+        "version": "1.7.6"
+      },
+      "Cardhop": {
+        "id": "1290358394",
+        "version": "1.3.2"
+      },
+      "Fantastical": {
+        "id": "975937182",
+        "version": "2.5.13"
+      },
+      "iMovie": {
+        "id": "408981434",
+        "version": "10.1.13"
+      },
+      "iStumbler": {
+        "id": "546033581",
+        "version": "103.43"
+      },
+      "Keynote": {
+        "id": "409183694",
+        "version": "9.2.1"
+      },
+      "Slack": {
+        "id": "803453959",
+        "version": "4.1.2"
+      },
+      "Xcode": {
+        "id": "497799835",
+        "version": "11.1"
       }
     }
   },
