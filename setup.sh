@@ -14,8 +14,7 @@ main() {
   setup_vim
   setup_tmux
   setup_yabai
-  setup_macos_system_preferences
-  setup_macos_application_preferences
+  setup_macos_system_and_application_preferences
   setup_macos_login_items
 }
 
@@ -216,11 +215,12 @@ function install_latest_node_with_nvm {
 function setup_symlinks {
   notify "INFO" 0 "\nSetting up symlinks"
 
-  symlink "bash:bashrc" ${DOTFILES_REPO}/.bashrc ~/.bashrc
-  symlink "bash:bash_profile" ${DOTFILES_REPO}/.profile ~/.bash_profile
-  symlink "bash:profile" ${DOTFILES_REPO}/.profile ~/.profile
+  symlink "bash:bashrc" ${DOTFILES_REPO}/.bashrc $HOME/.bashrc
+  symlink "bash:bash_profile" ${DOTFILES_REPO}/.profile $HOME/.bash_profile
+  symlink "bash:profile" ${DOTFILES_REPO}/.profile $HOME/.profile
+  symlink "macos" ${DOTFILES_REPO}/.macos $HOME/.macos
 
-  symlink "vim" ${DOTFILES_REPO}/.vim ~/.vim
+  symlink "vim" ${DOTFILES_REPO}/.vim $HOME/.vim
 
   notify "INFO" 1 "Symlinks setup complete"
 }
@@ -276,12 +276,13 @@ function setup_yabai {
   notify "INFO" 0 "\nNot yet implemented: setup_yabai"
 }
 
-function setup_macos_system_preferences {
-  notify "INFO" 0 "\nNot yet implemented: setup_macos_system_preferences"
-}
-
-function setup_macos_application_preferences {
-  notify "INFO" 0 "\nNot yet implemented: setup_macos_application_preferences"
+function setup_macos_system_and_application_preferences {
+  notify "INFO" 0 "\nSetting MacOS system and application preferences"
+  if source $HOME/.macos; then
+    notify "SUCCESS" 1 "Preferences successfully applied"
+  else
+    notify "FAIL" 1 "Preferences failed to apply"
+  fi
 }
 
 function setup_macos_login_items {
