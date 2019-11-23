@@ -18,6 +18,8 @@ set hlsearch " highlight matches
 
 set scrolloff=4 " Always keep a few lines above/below cursor at top/bottom of file
 
+let NERDTreeIgnore=['\.git$[[dir]]', 'node_modules$[[dir]]', '\.swp$[[file]]']
+
 " turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
 
