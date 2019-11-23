@@ -219,6 +219,8 @@ function setup_symlinks {
   symlink "bash:bash_profile" ${DOTFILES_REPO}/.profile $HOME/.bash_profile
   symlink "bash:profile" ${DOTFILES_REPO}/.profile $HOME/.profile
   symlink "macos" ${DOTFILES_REPO}/.macos $HOME/.macos
+  symlink "git:config" ${DOTFILES_REPO}/.gitconfig $HOME/.gitconfig
+  symlink "git:ignore" ${DOTFILES_REPO}/.gitignore $HOME/.gitignore-global
 
   symlink "vim" ${DOTFILES_REPO}/.vim $HOME/.vim
 

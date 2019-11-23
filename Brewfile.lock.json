@@ -5,10 +5,10 @@
         "revision": "1a41629972a351085d297e2c336f8eda0dc771eb"
       },
       "homebrew/cask": {
-        "revision": "a6d1647e70c81ba4726aadb74c4e6c71cfb360fb"
+        "revision": "99f87deecf4ced2da2fcb8b56b033dd7f0880880"
       },
       "homebrew/core": {
-        "revision": "c41c127b8e7abd82d43c7ad27662fd2d8b82d44a"
+        "revision": "b1a9f5fea73cbb02ec22d5fc8e89020900744787"
       },
       "homebrew/services": {
         "revision": "5d9721075f2b538e29ea4022ff666afa7065f164"
@@ -239,6 +239,10 @@
             }
           }
         }
+      },
+      "diff-so-fancy": {
+        "version": "1.2.7",
+        "bottle": false
       }
     },
     "cask": {
@@ -301,7 +305,7 @@
       "catalina": {
         "HOMEBREW_VERSION": "2.1.16",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "c41c127b8e7abd82d43c7ad27662fd2d8b82d44a",
+        "Homebrew/homebrew-core": "b1a9f5fea73cbb02ec22d5fc8e89020900744787",
         "CLT": "11.2.0.0.1.1571444319",
         "Xcode": "11.1",
         "macOS": "10.15.1"
