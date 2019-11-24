@@ -2,6 +2,14 @@
 " https://medium.com/actualize-network/how-to-learn-vim-a-four-week-plan-cd8b376a9b85
 " https://dougblack.io/words/a-good-vimrc.html
 
+" Plugins
+call plug#begin('~/.vim/plugged')
+Plug 'editorconfig/editorconfig-vim'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'coc'
+call plug#end()
+
 let mapleader="," " leader is comma
 
 syntax enable " enable syntax processing
@@ -39,3 +47,14 @@ nnoremap <leader>b :NERDTreeToggle<CR>
 "   then press q followed by number to open
 nnoremap <leader>r :browse oldfiles<CR>
 
+" coc config
+let g:coc_global_extensions = [
+  \ 'coc-json',
+  \ 'coc-tsserver',
+  \ 'coc-html',
+  \ 'coc-css',
+  \ 'coc-eslint',
+  \ 'coc-java',
+  \ 'coc-python',
+  \ 'coc-snippets',
+  \ ]

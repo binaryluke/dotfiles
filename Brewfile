@@ -22,6 +22,7 @@ cask "firefox"
 cask "google-chrome"
 cask "snagit"
 cask "lastpass"
+cask "vlc"
 mas "Bear", id: 1091189122
 mas "Cardhop", id: 1290358394
 mas "Fantastical", id: 975937182

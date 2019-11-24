@@ -1,3 +1,4 @@
 # Vim
-.vim/pack
+.vim/plugged
+.vim/autoload
 

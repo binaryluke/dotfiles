@@ -11,7 +11,8 @@ main() {
   install_nvm # nvm doesn't support homebrew
   install_latest_node_with_nvm
   setup_symlinks
-  setup_vim
+  install_vim_plug
+  run_vim_plug_clean_update_install
   setup_tmux
   setup_yabai
   setup_macos_system_and_application_preferences
@@ -241,36 +242,45 @@ function symlink() {
   fi
 }
 
-function setup_vim {
-  notify "INFO" 0 "\nInstalling vim plugins"
-
-  mkdir -p $DOTFILES_REPO/.vim/pack/main/start
-  install_vim_plugin "editorconfig" "https://github.com/editorconfig/editorconfig-vim.git"
-  install_vim_plugin "nerdtree" "https://github.com/scrooloose/nerdtree.git"
-  install_vim_plugin "nerdtree-git" "git@github.com:Xuyuanp/nerdtree-git-plugin.git"
-}
-
-function install_vim_plugin() {
-  name=$1
-  git_url=$2
-
-  if [ -d "$DOTFILES_REPO/.vim/pack/main/start/$name" ]; then
-    notify "INFO" 1 "Vim plugin $name already exists"
+function install_vim_plug {
+  notify "INFO" 0 "\nInstalling vim plugin manager"
+  if [ -f $DOTFILES_REPO/.vim/autoload/plug.vim ]; then
+    notify "INFO" 1 "Vim Plug already installed"
   else
-    if git -C $DOTFILES_REPO/.vim/pack/main/start clone $git_url $name &> /dev/null; then
-      notify "SUCCESS" 1 "Vim plugin $name cloned successfully"
-#      if vim -u NONE -c "helptags ~/.vim/pack/main/start/$name/doc" -c q; then
-#        echo "Vim plugin $name successfully loaded help tags"
-#      else
-#        echo "Vim plugin $name failed to load help tags"
-#        exit 1
-#      fi
+    if curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim &> /dev/null; then
+      notify "SUCCESS" 1 "Vim Plug installed successfully"
     else
-      notify "FAIL" 1 "Failed to clone vim plugin $name"
-      exit 1
+      notify "FAIL" 1 "Vim Plug failed to install"
     fi
   fi
 }
+
+function run_vim_plug_clean_update_install {
+  notify "INFO" 0 "\nRunning Vim Plug commands"
+
+  # Prune
+  if vim +PlugClean +qa!; then
+    notify "SUCCESS" 1 "Vim PlugClean run successfully"
+  else
+    notify "FAIL" 1 "Vim PlugClean failed"
+  fi
+
+  # Update
+  if vim +PlugUpdate +qa!; then
+    notify "SUCCESS" 1 "Vim PlugUpdate run successfully"
+  else
+    notify "FAIL" 1 "Vim PlugUpdate failed"
+  fi
+
+  # Install
+  if vim +PlugInstall +qa!; then
+    notify "SUCCESS" 1 "Vim PlugInstall run successfully"
+  else
+    notify "FAIL" 1 "Vim PlugInstall failed"
+  fi
+}
+
 
 function setup_tmux {
   notify "INFO" 0 "\nNot yet implemented: setup_tmux"

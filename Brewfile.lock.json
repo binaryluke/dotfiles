@@ -5,10 +5,10 @@
         "revision": "1a41629972a351085d297e2c336f8eda0dc771eb"
       },
       "homebrew/cask": {
-        "revision": "99f87deecf4ced2da2fcb8b56b033dd7f0880880"
+        "revision": "aa6a0da6a77737b068abe6ed0b1ae9fdabf4a279"
       },
       "homebrew/core": {
-        "revision": "b1a9f5fea73cbb02ec22d5fc8e89020900744787"
+        "revision": "875716802d595c549249d802008c04ce4cc8c0d1"
       },
       "homebrew/services": {
         "revision": "5d9721075f2b538e29ea4022ff666afa7065f164"
@@ -41,22 +41,22 @@
         }
       },
       "awscli": {
-        "version": "1.16.280",
+        "version": "1.16.290",
         "bottle": {
           "cellar": ":any_skip_relocation",
           "prefix": "/usr/local",
           "files": {
             "catalina": {
-              "url": "https://homebrew.bintray.com/bottles/awscli-1.16.280.catalina.bottle.tar.gz",
-              "sha256": "5162365a8df04b98299dca8c6069b191fc3c12d1a5219689766a0cb37dafcabd"
+              "url": "https://homebrew.bintray.com/bottles/awscli-1.16.290.catalina.bottle.tar.gz",
+              "sha256": "81a285641e973e462da7692ddc087cdfb7595d1b1e9eafa94c02da10a1ea9658"
             },
             "mojave": {
-              "url": "https://homebrew.bintray.com/bottles/awscli-1.16.280.mojave.bottle.tar.gz",
-              "sha256": "946a903b33ad429723fd606143699ebe34f501f8c56006a6aaeb2593134de96f"
+              "url": "https://homebrew.bintray.com/bottles/awscli-1.16.290.mojave.bottle.tar.gz",
+              "sha256": "376ca2a9a80a734c5f086a1c0699b6c351f64a6334f454734ed34b2ac674069f"
             },
             "high_sierra": {
-              "url": "https://homebrew.bintray.com/bottles/awscli-1.16.280.high_sierra.bottle.tar.gz",
-              "sha256": "334f57c5c99b0932d2f5a8cfd0627b0816ccc9a000877f9c5a271c0c090dca1e"
+              "url": "https://homebrew.bintray.com/bottles/awscli-1.16.290.high_sierra.bottle.tar.gz",
+              "sha256": "267dd608306325aed88b06e8b50e2cf543fd58b0bdf51b6a8e517255ca5533ac"
             }
           }
         }
@@ -263,6 +263,9 @@
       },
       "lastpass": {
         "version": "4.37.0"
+      },
+      "vlc": {
+        "version": "3.0.8"
       }
     },
     "mas": {
@@ -305,7 +308,7 @@
       "catalina": {
         "HOMEBREW_VERSION": "2.1.16",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "b1a9f5fea73cbb02ec22d5fc8e89020900744787",
+        "Homebrew/homebrew-core": "875716802d595c549249d802008c04ce4cc8c0d1",
         "CLT": "11.2.0.0.1.1571444319",
         "Xcode": "11.1",
         "macOS": "10.15.1"

@@ -5,6 +5,7 @@ c() {
 }
 alias cd="c"
 
+# Git aliases
 alias g="git"
 alias gs="git status"
 alias ga="git add"
@@ -18,9 +19,14 @@ alias gc="git commit"
 alias gco="git checkout"
 alias gp="git push"
 alias glg="git log"
+
+# Docker aliases
 alias d="docker"
 alias dc="docker-compose"
+
+# Other aliases
 alias n="npm"
+alias vime="vim -u $HOME/.vim/essential.vim"
 
 # Prompt
 # Color reference: https://misc.flogisoft.com/bash/tip_colors_and_formatting
