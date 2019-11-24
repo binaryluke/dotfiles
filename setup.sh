@@ -218,6 +218,7 @@ function setup_symlinks {
   symlink "bash:bashrc" ${DOTFILES_REPO}/.bashrc $HOME/.bashrc
   symlink "bash:bash_profile" ${DOTFILES_REPO}/.profile $HOME/.bash_profile
   symlink "bash:profile" ${DOTFILES_REPO}/.profile $HOME/.profile
+  symlink "bash:hushlogin" ${DOTFILES_REPO}/.hushlogin $HOME/.hushlogin
   symlink "macos" ${DOTFILES_REPO}/.macos $HOME/.macos
   symlink "git:config" ${DOTFILES_REPO}/.gitconfig $HOME/.gitconfig
   symlink "git:ignore" ${DOTFILES_REPO}/.gitignore-global $HOME/.gitignore
