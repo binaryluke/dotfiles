@@ -2,14 +2,24 @@
 " https://medium.com/actualize-network/how-to-learn-vim-a-four-week-plan-cd8b376a9b85
 " https://dougblack.io/words/a-good-vimrc.html
 
-" Plugins
+" ======================================== "
+"
+" Install Plugins
+"
+" ======================================== "
 call plug#begin('~/.vim/plugged')
 Plug 'editorconfig/editorconfig-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'coc'
 call plug#end()
 
+" ======================================== "
+"
+" Editing
+"
+" ======================================== "
 let mapleader="," " leader is comma
 
 syntax enable " enable syntax processing
@@ -17,6 +27,7 @@ colorscheme codedark " ~/.vim/colors/codedark.vim
 
 set tabstop=2 " number of visual spaces per tab
 set softtabstop=2 " number of spaces in tab when editing
+set shiftwidth=0 " setting zero causes vim to use the tabstop value instead
 set expandtab " tabs are spaces
 
 set number " show line numbers
@@ -26,10 +37,14 @@ set hlsearch " highlight matches
 
 set scrolloff=4 " Always keep a few lines above/below cursor at top/bottom of file
 
+set showcmd " Show the keystrokes in statusbar when in normal mode
+
 " nerdtree
 let NERDTreeIgnore=['\.git$[[dir]]', 'node_modules$[[dir]]', '\.swp$[[file]]']
 let NERDTreeShowHidden=1
 let NERDTreeShowLineNumbers=1
+let NERDTreeQuitOnOpen=1 " Close nerd tree when opening a file with o, i, etc
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif " Close Vim if NERDTree is last open buffer
 
 " turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
@@ -40,8 +55,8 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 
-" browse nerd tree
-nnoremap <leader>b :NERDTreeToggle<CR>
+" open nerd tree and highlight the file in current buffer
+nnoremap <leader>b :NERDTreeFind<CR>
 
 " browse recent files
 "   then press q followed by number to open
