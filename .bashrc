@@ -83,7 +83,9 @@ export NVM_DIR="$HOME/.nvm"
 if [ -r "/usr/local/etc/profile.d/bash_completion.sh" ]; then
   . "/usr/local/etc/profile.d/bash_completion.sh"
   # Reference: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
-  . "$HOME/dotfiles/git-completion.bash"
+  . "$HOME/.git-completion"
+  # Reference: https://raw.githubusercontent.com/docker/cli/master/contrib/completion/bash/docker
+  . "$HOME/.docker-completion"
 fi
 
 # Add to keychain quietly

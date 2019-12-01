@@ -7,6 +7,7 @@ main() {
   install_homebrew
   install_packages_with_brewfile
   remove_packages_not_in_brewfile
+  download_bash_completions
   change_shell_to_latest_bash
   install_nvm # nvm doesn't support homebrew
   install_latest_node_with_nvm
@@ -129,6 +130,22 @@ function remove_packages_not_in_brewfile() {
     fi
   else
     notify "INFO" 1 "No packages to remove"
+  fi
+}
+
+function download_bash_completions() {
+  notify "INFO" 0 "\nDownloading bash completions"
+
+  if curl -Lfso ~/.git-completion https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash &> /dev/null; then
+    notify "SUCCESS" 1 "Git completion downloaded successfully"
+  else
+    notify "FAIL" 1 "Git completion failed to download"
+  fi
+
+  if curl -Lfso ~/.docker-completion https://raw.githubusercontent.com/docker/cli/master/contrib/completion/bash/docker &> /dev/null; then
+    notify "SUCCESS" 1 "Docker completion downloaded successfully"
+  else
+    notify "FAIL" 1 "Docker completion failed to download"
   fi
 }
 
