@@ -39,6 +39,7 @@ set scrolloff=4 " Always keep a few lines above/below cursor at top/bottom of fi
 
 set showcmd " Show the keystrokes in statusbar when in normal mode
 
+set clipboard=unnamed " use system clipboard
 " nerdtree
 let NERDTreeIgnore=['\.git$[[dir]]', 'node_modules$[[dir]]', '\.swp$[[file]]']
 let NERDTreeShowHidden=1

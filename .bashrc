@@ -20,6 +20,7 @@ alias gco="git checkout"
 alias gp="git push"
 alias glg="git log"
 alias gl="git pull"
+alias gcl="git clone"
 
 # Docker aliases
 alias d="docker"
@@ -76,6 +77,17 @@ PROMPT_COMMAND=create_prompt
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Bash completion
+# Reference: https://itnext.io/programmable-completion-for-bash-on-macos-f81a0103080b
+if [ -r "/usr/local/etc/profile.d/bash_completion.sh" ]; then
+  . "/usr/local/etc/profile.d/bash_completion.sh"
+  # Reference: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
+  . "$HOME/dotfiles/git-completion.bash"
+fi
+
+# Add to keychain quietly
+ssh-add -K &> /dev/null
 
 # Import local bashrc for machine specific run commands
 if [ -f $HOME/.bashrc-local ]; then
