@@ -5,10 +5,10 @@
         "revision": "aced1252de5657a0a24313fc321cb5eb406f4725"
       },
       "homebrew/cask": {
-        "revision": "6127054c1f8df680f5fa37bae3126e6e610e5ffc"
+        "revision": "baf9b1f1ebdf36a5d05ab755364725ba17e20170"
       },
       "homebrew/core": {
-        "revision": "43ad053e9c72b06e657c0aff07ecd96a1f2ebd22"
+        "revision": "92897a68bf1cb262d5f8a04be90843b16f7534b9"
       },
       "homebrew/services": {
         "revision": "5d9721075f2b538e29ea4022ff666afa7065f164"
@@ -306,6 +306,48 @@
             }
           }
         }
+      },
+      "exercism": {
+        "version": "3.0.13",
+        "bottle": {
+          "cellar": ":any_skip_relocation",
+          "prefix": "/usr/local",
+          "files": {
+            "catalina": {
+              "url": "https://homebrew.bintray.com/bottles/exercism-3.0.13.catalina.bottle.tar.gz",
+              "sha256": "d90d9790c3afc60533cedf8e2fdafa9c74659b4f706326810aa2e556efabe9c7"
+            },
+            "mojave": {
+              "url": "https://homebrew.bintray.com/bottles/exercism-3.0.13.mojave.bottle.tar.gz",
+              "sha256": "f00c53d1ee4bc4cf935ad4c5039b665078b1e6d81687b55ae988a621fe2d93b8"
+            },
+            "high_sierra": {
+              "url": "https://homebrew.bintray.com/bottles/exercism-3.0.13.high_sierra.bottle.tar.gz",
+              "sha256": "04f72181da1a9cde08e87357cc1494252f0290d18646df0f3bffec7673c26e7e"
+            }
+          }
+        }
+      },
+      "go": {
+        "version": "1.13.4",
+        "bottle": {
+          "cellar": "/usr/local/Cellar",
+          "prefix": "/usr/local",
+          "files": {
+            "catalina": {
+              "url": "https://homebrew.bintray.com/bottles/go-1.13.4.catalina.bottle.tar.gz",
+              "sha256": "77af3e8081a002c86b4b87ec97dc5dc28cab49704913a4db22ebc7ce838dc6ad"
+            },
+            "mojave": {
+              "url": "https://homebrew.bintray.com/bottles/go-1.13.4.mojave.bottle.tar.gz",
+              "sha256": "2fc74073a90a7073dab940868ac23fa6cd465af8a39ed2d882b18d62bec2265f"
+            },
+            "high_sierra": {
+              "url": "https://homebrew.bintray.com/bottles/go-1.13.4.high_sierra.bottle.tar.gz",
+              "sha256": "20d5242dbbb08128c254a1cc96f55cfc9add74c9567600dfd9366f3d028f5563"
+            }
+          }
+        }
       }
     },
     "cask": {
@@ -371,7 +413,7 @@
       "catalina": {
         "HOMEBREW_VERSION": "2.2.0",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "43ad053e9c72b06e657c0aff07ecd96a1f2ebd22",
+        "Homebrew/homebrew-core": "92897a68bf1cb262d5f8a04be90843b16f7534b9",
         "CLT": "11.2.0.0.1.1571444319",
         "Xcode": "11.1",
         "macOS": "10.15.1"

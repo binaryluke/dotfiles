@@ -296,6 +296,13 @@ function run_vim_plug_clean_update_install {
   else
     notify "FAIL" 1 "Vim PlugInstall failed"
   fi
+
+  # Dependencies
+  if pip3 install --user pynvim; then
+    notify "SUCCESS" 1 "pynvim dependency for denite installed successfully"
+  else
+    notify "FAIL" 1 "pynvim dependency for denite failed to install"
+  fi
 }
 
 
