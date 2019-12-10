@@ -79,6 +79,7 @@ let g:coc_global_extensions = [
   \ 'coc-java',
   \ 'coc-python',
   \ 'coc-snippets',
+  \ 'coc-prettier',
   \ ]
 
 " navigate auto completions with <tab> and <shift-tab>
@@ -96,6 +97,9 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+" Prettier config
+nnoremap <leader>p :CocCommand prettier.formatFile<CR>
+
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
@@ -110,6 +114,8 @@ endfunction
 " ======================================== "
 "
 " Denite Plugin Configuration
+"
+" Reference: https://www.freecodecamp.org/news/a-guide-to-modern-web-development-with-neo-vim-333f7efbf8e2/
 "
 " ======================================== "
 
