@@ -1,10 +1,3 @@
-# List directories after cd
-c() {
-  \cd $1;
-  ls -a;
-}
-alias cd="c"
-
 # Git aliases
 alias g="git"
 alias gs="git status"
