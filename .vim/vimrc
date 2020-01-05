@@ -15,6 +15,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'Shougo/denite.nvim'
   Plug 'roxma/nvim-yarp' " for denite
   Plug 'roxma/vim-hug-neovim-rpc' " for denite
+  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+  Plug 'vimwiki/vimwiki'
 call plug#end()
 
 " ======================================== "
@@ -42,6 +44,7 @@ set scrolloff=4 " Always keep a few lines above/below cursor at top/bottom of fi
 set showcmd " Show the keystrokes in statusbar when in normal mode
 
 set clipboard=unnamed " use system clipboard
+
 " nerdtree
 let NERDTreeIgnore=['\.git$[[dir]]', 'node_modules$[[dir]]', '\.swp$[[file]]']
 let NERDTreeShowHidden=1
@@ -220,4 +223,12 @@ endfunction
 catch
   echo 'Denite not installed. It should work after running :PlugInstall'
 endtry
+
+" ======================================== "
+"
+" VimWiki Plugin Configuration
+"
+" ======================================== "
+
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 
