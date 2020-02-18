@@ -55,11 +55,17 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
 
-" split navigation
+" split navigation and sizing
+set splitbelow
+set splitright
 nnoremap <C-H> <C-W><C-H>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
+nnoremap <silent> = :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
+nnoremap <silent> <C-]> :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
+nnoremap <silent> <C-[> :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
 
 " open nerd tree and highlight the file in current buffer
 nnoremap <leader>b :NERDTreeFind<CR>
@@ -67,6 +73,7 @@ nnoremap <leader>b :NERDTreeFind<CR>
 " browse recent files
 "   then press q followed by number to open
 nnoremap <leader>r :browse oldfiles<CR>
+
 
 " ======================================== "
 "
