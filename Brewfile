@@ -30,6 +30,7 @@ cask "google-chrome"
 cask "postman"
 cask "snagit"
 cask "lastpass"
+cask "visual-studio-code"
 cask "vlc"
 mas "Bear", id: 1091189122
 mas "Cardhop", id: 1290358394

@@ -1,2 +1,9 @@
+#!/usr/bin/env bash
+
+
 # Reference https://pawelgrzybek.com/change-macos-user-preferences-via-command-line/
+
+# Visual Studio Code - Vim Emulation Requirements
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false         # For VS Code
+defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false # For VS Code Insider
 

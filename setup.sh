@@ -241,7 +241,14 @@ function setup_symlinks {
   symlink "git:config" ${DOTFILES_REPO}/.gitconfig $HOME/.gitconfig
   symlink "git:ignore" ${DOTFILES_REPO}/.gitignore-global $HOME/.gitignore
 
+  # vim settings
   symlink "vim" ${DOTFILES_REPO}/.vim $HOME/.vim
+
+  # vscode settings
+  mkdir -p $HOME/Library/Application\ Support/Code/User/snippets
+  symlink "vscode:settings.json" ${DOTFILES_REPO}/vscode/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
+  symlink "vscode:keybindings.json" ${DOTFILES_REPO}/vscode/keybindings.json $HOME/Library/Application\ Support/Code/User/keybindings.json
+  symlink "vscode:snippets" ${DOTFILES_REPO}/vscode/snippets/ $HOME/Library/Application\ Support/Code/User/snippets
 
   notify "INFO" 1 "Symlinks setup complete"
 }
