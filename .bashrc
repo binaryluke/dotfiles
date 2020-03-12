@@ -67,7 +67,9 @@ create_prompt() {
 
   PS1="\n$PS1\e[0m\n\$ "
 }
-PROMPT_COMMAND=create_prompt
+# Append not override so MacOS can set the correct cwd
+# Reference: https://github.com/Bash-it/bash-it/issues/240
+PROMPT_COMMAND="$PROMPT_COMMAND;create_prompt;"
 
 # Nvm
 export NVM_DIR="$HOME/.nvm"
