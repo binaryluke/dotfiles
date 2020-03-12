@@ -84,6 +84,8 @@ if [ -r "/usr/local/etc/profile.d/bash_completion.sh" ]; then
   . "$HOME/.git-completion"
   # Reference: https://raw.githubusercontent.com/docker/cli/master/contrib/completion/bash/docker
   . "$HOME/.docker-completion"
+  # Reference: https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+  . <(kubectl completion bash)
 fi
 
 # Add to keychain quietly
