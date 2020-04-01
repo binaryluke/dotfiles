@@ -1,5 +1,6 @@
 # Git aliases
 alias g="git"
+alias gb="git branch"
 alias gs="git status"
 alias ga="git add"
 alias gd="git diff"
