@@ -20,7 +20,7 @@
         "after": ["d", "d"]
         },
         {
-        "before": ["<C-n>"],
+        "before": ["<leader>", "<space>"],
         "commands": [":nohl"]
         }
     ],
@@ -46,5 +46,8 @@
     "vim.handleKeys": {
         "<C-a>": false,
         "<C-f>": false
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     }
 }
