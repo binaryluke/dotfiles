@@ -251,6 +251,9 @@ function setup_symlinks {
   symlink "vscode:keybindings.json" ${DOTFILES_REPO}/vscode/keybindings.json $HOME/Library/Application\ Support/Code/User/keybindings.json
   symlink "vscode:snippets" ${DOTFILES_REPO}/vscode/snippets/ $HOME/Library/Application\ Support/Code/User/snippets
 
+  # amethyst settings
+  symlink "amethyst:plist" ${DOTFILES_REPO}/amethyst/plist $HOME/Library/Preferences/com.amethyst.Amethyst.plist
+
   notify "INFO" 1 "Symlinks setup complete"
 }
 
