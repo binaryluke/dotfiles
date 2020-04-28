@@ -29,6 +29,13 @@ alias audacity="open /Applications/Audacity.app/Contents/MacOS/Audacity"
 # Add Visual Studio Code (code) to PATH
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
+# Add scripts folder to path
+export PATH="$PATH:/$HOME/scripts"
+
+# Export iCloud drive path variable
+export ICLOUD="$HOME/Library/Mobile\ Documents/com~apple~CloudDocs"
+alias icloud="cd $ICLOUD"
+
 # Prompt
 # Color reference: https://misc.flogisoft.com/bash/tip_colors_and_formatting
 COLOR_RED_BG="\e[41m"
