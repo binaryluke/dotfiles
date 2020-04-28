@@ -24,6 +24,7 @@ alias dc="docker-compose"
 alias n="npm"
 alias vime="vim -u $HOME/.vim/essential.vim"
 alias vdot="vim $HOME/dotfiles"
+alias audacity="open /Applications/Audacity.app/Contents/MacOS/Audacity"
 
 # Add Visual Studio Code (code) to PATH
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
