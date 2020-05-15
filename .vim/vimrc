@@ -74,6 +74,14 @@ nnoremap <leader>b :NERDTreeFind<CR>
 "   then press q followed by number to open
 nnoremap <leader>r :browse oldfiles<CR>
 
+" ======================================== "
+"
+" FileType gitcommit
+"
+" ======================================== "
+autocmd FileType gitcommit set textwidth=72 " auto wrap
+autocmd FileType gitcommit set colorcolumn=51 " for titles
+autocmd FileType gitcommit set colorcolumn+=73 " for body
 
 " ======================================== "
 "
