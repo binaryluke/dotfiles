@@ -17,6 +17,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'roxma/vim-hug-neovim-rpc' " for denite
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
   Plug 'vimwiki/vimwiki'
+  Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " ======================================== "
