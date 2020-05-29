@@ -78,7 +78,7 @@ create_prompt() {
 }
 # Append not override so MacOS can set the correct cwd
 # Reference: https://github.com/Bash-it/bash-it/issues/240
-PROMPT_COMMAND="$PROMPT_COMMAND;create_prompt;"
+PROMPT_COMMAND="create_prompt;update_terminal_cwd;"
 
 # Nvm
 export NVM_DIR="$HOME/.nvm"
