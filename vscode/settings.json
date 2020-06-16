@@ -58,5 +58,12 @@
     },
     "explorer.confirmDelete": false,
     "go.formatTool": "goimports",
-    "go.useLanguageServer": true
+    "go.useLanguageServer": true,
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.minimap.enabled": false,
+    "files.exclude": {
+        "**/node_modules": true
+    }
 }
