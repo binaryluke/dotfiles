@@ -90,7 +90,22 @@ export NVM_DIR="$HOME/.nvm"
 if [ -r "/usr/local/etc/profile.d/bash_completion.sh" ]; then
   . "/usr/local/etc/profile.d/bash_completion.sh"
   # Reference: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
+  # Reference: https://stackoverflow.com/questions/9869227/git-autocomplete-in-bash-aliases 
   . "$HOME/.git-completion"
+  __git_complete g _git
+  __git_complete gb _git_branch
+  __git_complete gs _git_status
+  __git_complete ga _git_add
+  __git_complete gd _git_diff
+  __git_complete gm _git_merge
+  __git_complete gf _git_fetch
+  __git_complete gr _git_remote
+  __git_complete gc _git_commit
+  __git_complete gco _git_checkout
+  __git_complete gp _git_push
+  __git_complete glg _git_log
+  __git_complete gl _git_pull
+  __git_complete gcl _git_clone
   # Reference: https://raw.githubusercontent.com/docker/cli/master/contrib/completion/bash/docker
   . "$HOME/.docker-completion"
   # Reference: https://kubernetes.io/docs/reference/kubectl/cheatsheet/
