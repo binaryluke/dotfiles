@@ -65,5 +65,6 @@
     "editor.minimap.enabled": false,
     "files.exclude": {
         "**/node_modules": true
-    }
+    },
+    "typescript.updateImportsOnFileMove.enabled": "always"
 }
