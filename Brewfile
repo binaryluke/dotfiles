@@ -3,19 +3,13 @@ tap "homebrew/cask"
 tap "homebrew/core"
 tap "homebrew/services"
 brew "python"
-brew "awscli"
 brew "bash"
 brew "bash-completion@2"
 brew "cfssl"
 brew "exercism"
 brew "ffmpeg"
 brew "gnupg"
-brew "go"
-brew "gradle"
-brew "gradle-completion"
-brew "jrnl"
 brew "mas"
-brew "maven"
 brew "p7zip"
 brew "pipenv"
 brew "ripgrep"
@@ -38,5 +32,4 @@ mas "Bear", id: 1091189122
 mas "Cardhop", id: 1290358394
 mas "Fantastical", id: 975937182
 mas "iStumbler", id: 546033581
-mas "Keynote", id: 409183694
 mas "Slack", id: 803453959
