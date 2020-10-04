@@ -29,6 +29,9 @@ alias audacity="open /Applications/Audacity.app/Contents/MacOS/Audacity"
 # Add Visual Studio Code (code) to PATH
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
+# Add mysql client to PATH
+export PATH="$PATH:/usr/local/opt/mysql-client/bin"
+
 # Add scripts folder to path
 export PATH="$PATH:/$HOME/scripts"
 
