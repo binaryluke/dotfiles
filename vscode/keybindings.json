@@ -1,5 +1,9 @@
 [
   {
+    "key": "ctrl+s",
+    "command": "workbench.action.focusSideBar"
+  },
+  {
     "key": "ctrl+h",
     "command": "workbench.action.focusLeftGroup"
   },
