@@ -46,6 +46,26 @@ COLOR_GREEN_BG="\e[48;5;70m"
 COLOR_BLUE_BG="\e[44m"
 COLOR_LIGHT_BLUE_BG="\e[104m"
 COLOR_ORANGE_BG="\e[48;5;208m"
+
+# type -a update_terminal_cwd
+update_cwd() {
+  local url_path='';
+  { 
+    local i ch hexch LC_CTYPE=C LC_COLLATE=C LC_ALL= LANG=;
+    for ((i = 0; i < ${#PWD}; ++i))
+    do
+      ch="${PWD:i:1}";
+      if [[ "$ch" =~ [/._~A-Za-z0-9-] ]]; then
+        url_path+="$ch";
+      else
+        printf -v hexch "%02X" "'$ch";
+        url_path+="%${hexch: -2:2}";
+      fi;
+    done
+  };
+  printf '\e]7;%s\a' "file://$HOSTNAME$url_path"
+}
+
 create_prompt() {
   # Exit code
   local EXIT_TEXT="$?"
@@ -81,7 +101,7 @@ create_prompt() {
 }
 # Append not override so MacOS can set the correct cwd
 # Reference: https://github.com/Bash-it/bash-it/issues/240
-PROMPT_COMMAND="create_prompt;update_terminal_cwd;"
+PROMPT_COMMAND="create_prompt;update_cwd;"
 
 # Nvm
 export NVM_DIR="$HOME/.nvm"
@@ -111,8 +131,6 @@ if [ -r "/usr/local/etc/profile.d/bash_completion.sh" ]; then
   __git_complete gcl _git_clone
   # Reference: https://raw.githubusercontent.com/docker/cli/master/contrib/completion/bash/docker
   . "$HOME/.docker-completion"
-  # Reference: https://kubernetes.io/docs/reference/kubectl/cheatsheet/
-  . <(kubectl completion bash)
 fi
 
 # Add to keychain quietly
