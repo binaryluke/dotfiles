@@ -25,3 +25,8 @@
 
 [commit]
   template = ~/dotfiles/.git-commit-template
+
+[http]
+  sslVersion = tlsv1.2
+  postBuffer = 524288000
+
