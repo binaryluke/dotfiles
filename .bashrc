@@ -35,6 +35,9 @@ export PATH="$PATH:/usr/local/opt/mysql-client/bin"
 # Add scripts folder to path
 export PATH="$PATH:/$HOME/scripts"
 
+# Add brew lib to path
+export PATH="$PATH:/usr/local/sbin"
+
 # Export iCloud drive path variable
 export ICLOUD="$HOME/Library/Mobile\ Documents/com~apple~CloudDocs"
 alias icloud="cd $ICLOUD"
