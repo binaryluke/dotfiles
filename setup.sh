@@ -4,14 +4,13 @@ main() {
   ask_for_sudo
   install_xcode_command_line_tools # next step requires "git" installed with xcode
   clone_dotfiles_repo
+  install_ohmyzsh
   install_homebrew
   install_packages_with_brewfile
   remove_packages_not_in_brewfile
   install_nvm # nvm doesn't support homebrew
   install_latest_node_with_nvm
   setup_symlinks
-  install_vim_plug
-  run_vim_plug_clean_update_install
   setup_tmux
   setup_yabai
   setup_macos_system_and_application_preferences
@@ -79,6 +78,20 @@ function pull_latest_in_dotfiles_repo {
   fi
 }
 
+function install_ohmyzsh {
+  notify "INFO" 0 "\nInstalling Oh My ZSH"
+  if [ -d ~/.oh-my-zsh ]; then
+    notify "INFO" 1 "Oh My ZSH already exists; skipping"
+  else
+    url=https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+    if /bin/sh -c "$(curl -fsSL ${url})" "" --unattended; then
+      notify "SUCCESS" 2 "Oh My ZSH installed successfully"
+    else
+      notify "FAIL" 2 "Oh My ZSH failed t install"
+    fi
+  fi
+}
+
 # Credit: https://github.com/sam-hosseini/dotfiles/blob/92cdd34570629fdb6d3e94865ba6b8bedd99dbe8/bootstrap.sh#L52
 function install_homebrew {
   notify "INFO" 0 "\nInstalling Homebrew"
@@ -90,8 +103,8 @@ function install_homebrew {
       notify "FAIL" 2 "Homebrew failed to update"
     fi
   else
-    url=https://raw.githubusercontent.com/Homebrew/install/master/install
-    if yes | /usr/bin/ruby -e "$(curl -fsSL ${url})"; then
+    url=https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
+    if yes | /bin/bash -c "$(curl -fsSL ${url})"; then
       notify "SUCCESS" 1 "Homebrew installation succeeded"
     else
       notify "FAIL" 1 "Homebrew installation failed"
@@ -188,17 +201,13 @@ function install_latest_node_with_nvm {
 function setup_symlinks {
   notify "INFO" 0 "\nSetting up symlinks"
 
-  symlink "bash:bashrc" ${DOTFILES_REPO}/.bashrc $HOME/.bashrc
-  symlink "bash:bash_profile" ${DOTFILES_REPO}/.profile $HOME/.bash_profile
-  symlink "bash:profile" ${DOTFILES_REPO}/.profile $HOME/.profile
-  symlink "bash:hushlogin" ${DOTFILES_REPO}/.hushlogin $HOME/.hushlogin
-  symlink "bash:inputrc" ${DOTFILES_REPO}/.inputrc $HOME/.inputrc
+  symlink "zsh:zshrc" ${DOTFILES_REPO}/.zshrc $HOME/.zshrc
+  symlink "zsh:zprofile" ${DOTFILES_REPO}/.profile $HOME/.zprofile
+  symlink "zsh:hushlogin" ${DOTFILES_REPO}/.hushlogin $HOME/.hushlogin
+  symlink "zsh:inputrc" ${DOTFILES_REPO}/.inputrc $HOME/.inputrc
   symlink "macos" ${DOTFILES_REPO}/.macos $HOME/.macos
   symlink "git:config" ${DOTFILES_REPO}/.gitconfig $HOME/.gitconfig
   symlink "git:ignore" ${DOTFILES_REPO}/.gitignore-global $HOME/.gitignore
-
-  # vim settings
-  symlink "vim" ${DOTFILES_REPO}/.vim $HOME/.vim
 
   # vscode settings
   mkdir -p $HOME/Library/Application\ Support/Code/User/snippets
@@ -224,53 +233,6 @@ function symlink() {
     exit 1
   fi
 }
-
-function install_vim_plug {
-  notify "INFO" 0 "\nInstalling vim plugin manager"
-  if [ -f $DOTFILES_REPO/.vim/autoload/plug.vim ]; then
-    notify "INFO" 1 "Vim Plug already installed"
-  else
-    if curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim &> /dev/null; then
-      notify "SUCCESS" 1 "Vim Plug installed successfully"
-    else
-      notify "FAIL" 1 "Vim Plug failed to install"
-    fi
-  fi
-}
-
-function run_vim_plug_clean_update_install {
-  notify "INFO" 0 "\nRunning Vim Plug commands"
-
-  # Prune
-  if vim +PlugClean +qa!; then
-    notify "SUCCESS" 1 "Vim PlugClean run successfully"
-  else
-    notify "FAIL" 1 "Vim PlugClean failed"
-  fi
-
-  # Update
-  if vim +PlugUpdate +qa!; then
-    notify "SUCCESS" 1 "Vim PlugUpdate run successfully"
-  else
-    notify "FAIL" 1 "Vim PlugUpdate failed"
-  fi
-
-  # Install
-  if vim +PlugInstall +qa!; then
-    notify "SUCCESS" 1 "Vim PlugInstall run successfully"
-  else
-    notify "FAIL" 1 "Vim PlugInstall failed"
-  fi
-
-  # Dependencies
-  if pip3 install --user pynvim; then
-    notify "SUCCESS" 1 "pynvim dependency for denite installed successfully"
-  else
-    notify "FAIL" 1 "pynvim dependency for denite failed to install"
-  fi
-}
-
 
 function setup_tmux {
   notify "INFO" 0 "\nNot yet implemented: setup_tmux"

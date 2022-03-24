@@ -1,12 +1,14 @@
-# Docker aliases
-alias d="docker"
-alias dc="docker-compose"
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
 
-# Other aliases
-alias n="npm"
-alias vime="vim -u $HOME/.vim/essential.vim"
-alias vdot="vim $HOME/dotfiles"
-alias audacity="open /Applications/Audacity.app/Contents/MacOS/Audacity"
+ZSH_THEME="robbyrussell"
+zstyle ':omz:update' mode reminder
+
+HIST_STAMPS="yyyy-mm-dd"
+
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
 
 # Add Visual Studio Code (code) to PATH
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
@@ -31,9 +33,4 @@ export NVM_DIR="$HOME/.nvm"
 
 # Add to keychain quietly
 ssh-add -K &> /dev/null
-
-# Import local bashrc for machine specific run commands
-if [ -f $HOME/.bashrc-local ]; then
-  source $HOME/.bashrc-local
-fi
 
