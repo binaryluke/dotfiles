@@ -7,8 +7,6 @@ main() {
   install_homebrew
   install_packages_with_brewfile
   remove_packages_not_in_brewfile
-  download_bash_completions
-  change_shell_to_latest_bash
   install_nvm # nvm doesn't support homebrew
   install_latest_node_with_nvm
   setup_symlinks
@@ -130,49 +128,6 @@ function remove_packages_not_in_brewfile() {
     fi
   else
     notify "INFO" 1 "No packages to remove"
-  fi
-}
-
-function download_bash_completions() {
-  notify "INFO" 0 "\nDownloading bash completions"
-
-  if curl -Lfso ~/.git-completion https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash &> /dev/null; then
-    notify "SUCCESS" 1 "Git completion downloaded successfully"
-  else
-    notify "FAIL" 1 "Git completion failed to download"
-  fi
-
-  if curl -Lfso ~/.docker-completion https://raw.githubusercontent.com/docker/cli/master/contrib/completion/bash/docker &> /dev/null; then
-    notify "SUCCESS" 1 "Docker completion downloaded successfully"
-  else
-    notify "FAIL" 1 "Docker completion failed to download"
-  fi
-}
-
-function change_shell_to_latest_bash {
-  notify "INFO" 0 "\nChanging default shell to latest Bash"
-  if [ "$SHELL" == "/usr/local/bin/bash" ]; then
-    notify "INFO" 1 "Latest Bash is already the default shell"
-  else
-    user=$(whoami)
-    notify "INFO" 1 "Adding latest Bash to /etc/shells"
-    if grep --fixed-strings --line-regexp --quiet "/usr/local/bin/bash" /etc/shells; then
-      notify "INFO" 2 "Latest Bash already exists in /etc/shells"
-    else
-      if echo /usr/local/bin/bash | sudo tee -a /etc/shells > /dev/null; then
-        notify "SUCCESS" 2 "Latest Bash successfully added to /etc/shells"
-      else
-        notify "FAIL" 1 "Failed to add latest Bash to /etc/shells"
-        exit 1
-      fi 
-    fi
-    notify "INFO" 1 "Switching shell to latest Bash for \"${user}\""
-    if sudo chsh -s /usr/local/bin/bash "$user"; then
-      notify "SUCCESS" 2 "Latest Bash shell successfully set as default for \"${user}\""
-    else
-      notify "FAIL" 2 "Failed to set latest Bash as default shell"
-      exit 1
-    fi 
   fi
 }
 

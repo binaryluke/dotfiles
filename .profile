@@ -1,4 +1,4 @@
-if [ -r ~/.bashrc ]; then
-  source ~/.bashrc
+if [ -r ~/.zshrc ]; then
+  source ~/.zshrc
 fi
 

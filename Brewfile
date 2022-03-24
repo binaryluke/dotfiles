@@ -7,7 +7,6 @@ brew "python"
 brew "bash"
 brew "bash-completion@2"
 brew "cfssl"
-brew "exercism"
 brew "ffmpeg"
 brew "ghostscript" # required by ImageMagick
 brew "git" # fix terminal slowness: https://apple.stackexchange.com/questions/119864/xcodebuild-firing-after-every-terminal-command
@@ -16,6 +15,7 @@ brew "graphviz"
 brew "imagemagick"
 brew "mas"
 brew "mongodb-community@4.4"
+brew "neovim"
 brew "p7zip"
 brew "pipenv"
 brew "ripgrep"
@@ -25,7 +25,6 @@ brew "watchman"
 brew "youtube-dl"
 brew "diff-so-fancy"
 cask "amethyst"
-cask "docker"
 cask "firefox"
 cask "google-chrome"
 cask "postman"
@@ -33,8 +32,5 @@ cask "lastpass"
 cask "snagit"
 cask "visual-studio-code"
 cask "vlc"
-mas "Bear", id: 1091189122
-mas "Cardhop", id: 1290358394
-mas "Fantastical", id: 975937182
 mas "iStumbler", id: 546033581
 mas "Slack", id: 803453959
