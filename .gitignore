@@ -3,5 +3,8 @@
 .vim/autoload
 .vim/.netrwhist
 
+# nvim
+nvim/plugin/
+
 __notes__
 

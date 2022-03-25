@@ -205,6 +205,7 @@ function setup_symlinks {
   symlink "zsh:zprofile" ${DOTFILES_REPO}/.profile $HOME/.zprofile
   symlink "zsh:hushlogin" ${DOTFILES_REPO}/.hushlogin $HOME/.hushlogin
   symlink "zsh:inputrc" ${DOTFILES_REPO}/.inputrc $HOME/.inputrc
+  symlink "nvim" ${DOTFILES_REPO}/nvim $HOME/.config/nvim
   symlink "macos" ${DOTFILES_REPO}/.macos $HOME/.macos
   symlink "git:config" ${DOTFILES_REPO}/.gitconfig $HOME/.gitconfig
   symlink "git:ignore" ${DOTFILES_REPO}/.gitignore-global $HOME/.gitignore
