@@ -10,7 +10,7 @@ brew "git" # fix terminal slowness: https://apple.stackexchange.com/questions/11
 brew "gnupg"
 brew "graphviz"
 # brew "imagemagick"
-# brew "mongodb-community@5.0"
+brew "mongodb-community@5.0"
 brew "neovim"
 brew "p7zip"
 brew "pipenv"

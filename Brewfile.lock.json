@@ -8,7 +8,7 @@
         "revision": "61fbeaca9a2fc3a05e5ee9f19a6b9b605df55c67"
       },
       "homebrew/core": {
-        "revision": "997f7f7f72722c68f2efdf5c4ce7c6f5661acc93"
+        "revision": "325fc8a2e1cbb2a8841795d31a0a69df1497e52f"
       },
       "homebrew/services": {
         "revision": "3fbd50aef0d70b690ffbc8488bb3f2210f13719b"
@@ -789,6 +789,10 @@
             }
           }
         }
+      },
+      "mongodb-community@5.0": {
+        "version": "5.0.6",
+        "bottle": false
       }
     },
     "cask": {
@@ -915,7 +919,7 @@
       "big_sur": {
         "HOMEBREW_VERSION": "3.4.3",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "997f7f7f72722c68f2efdf5c4ce7c6f5661acc93",
+        "Homebrew/homebrew-core": "325fc8a2e1cbb2a8841795d31a0a69df1497e52f",
         "CLT": "12.5.1.0.1.1623191612",
         "Xcode": "13.1",
         "macOS": "11.6"
