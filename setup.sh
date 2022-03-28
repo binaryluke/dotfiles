@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 main() {
   ask_for_sudo
@@ -15,6 +15,7 @@ main() {
   setup_yabai
   setup_macos_system_and_application_preferences
   setup_macos_login_items
+  remind_manual
 }
 
 DOTFILES_REPO=~/dotfiles
@@ -205,6 +206,7 @@ function setup_symlinks {
   symlink "zsh:zprofile" ${DOTFILES_REPO}/.profile $HOME/.zprofile
   symlink "zsh:hushlogin" ${DOTFILES_REPO}/.hushlogin $HOME/.hushlogin
   symlink "zsh:inputrc" ${DOTFILES_REPO}/.inputrc $HOME/.inputrc
+  symlink "alacritty" ${DOTFILES_REPO}/alacritty $HOME/.config/alacritty
   symlink "nvim" ${DOTFILES_REPO}/nvim $HOME/.config/nvim
   symlink "macos" ${DOTFILES_REPO}/.macos $HOME/.macos
   symlink "git:config" ${DOTFILES_REPO}/.gitconfig $HOME/.gitconfig
@@ -256,6 +258,10 @@ function setup_macos_login_items {
   notify "INFO" 0 "\nNot yet implemented: setup_macos_login_items"
 }
 
+function remind_manual() {
+  notify "INFO" 0 "\nManual install the following:\nAlacritty\nSnagIt\nAmethyst\nChrome\nVS Code\nLast Pass\nSlack\nAnki\nMindNode"
+}
+
 function notify() {
   local TYPE=$1 # ""/"INFO", "SUCCESS", "FAIL"
   local INDENT=$2 # 0..infinity
@@ -282,7 +288,6 @@ function notify() {
   OUT="$OUT$MSG\e[0m"
   echo -e "$OUT"
 }
-
 
 main "$@"
 

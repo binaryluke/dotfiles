@@ -34,3 +34,6 @@ export NVM_DIR="$HOME/.nvm"
 # Add to keychain quietly
 ssh-add -K &> /dev/null
 
+# Bind NeoVim to vim
+alias vim="nvim"
+
