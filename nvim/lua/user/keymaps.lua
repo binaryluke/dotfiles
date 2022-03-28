@@ -1,3 +1,5 @@
+-- Inspired heavily by https://youtu.be/435-amtVYJ8
+
 local opts = { noremap = true, silent = true }
 
 local term_opts = { silent = true }

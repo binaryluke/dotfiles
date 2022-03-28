@@ -1,3 +1,5 @@
+-- Inspired heavily by https://youtu.be/gd_wapDL0V0
+
 local fn = vim.fn
 
 -- Automatically install packer

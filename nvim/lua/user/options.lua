@@ -1,3 +1,5 @@
+-- Inspired heavily by https://youtu.be/hY5-Q6NxQgY
+
 -- :help options
 vim.opt.backup = false
 vim.opt.clipboard = "unnamedplus"

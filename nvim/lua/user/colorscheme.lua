@@ -1,3 +1,5 @@
+-- Inspired heavily by https://youtu.be/RtNPfJKNr_8
+
 local colorscheme = "default"
 
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
