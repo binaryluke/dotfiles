@@ -192,8 +192,10 @@ function install_latest_node_with_nvm {
   fi
 
   # Set latest node as the default
-  if nvm alias default node &> /dev/null; then
-    notify "SUCCESS" 1 "Latest node installed and set as the default"
+  # if nvm alias default node &> /dev/null; then
+  #   notify "SUCCESS" 1 "Latest node installed and set as the default"
+  if nvm alias default 16 &> /dev/null; then
+    notify "SUCCESS" 1 "Node 16 is set as the default"
   else
     notify "FAIL" 1 "Failed to set latest node as default"
   fi
