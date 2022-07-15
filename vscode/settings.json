@@ -81,6 +81,8 @@
   "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
   "editor.wordWrap": "off",
   "workbench.panel.defaultLocation": "bottom",
-  "window.zoomLevel": 1,
-  "editor.minimap.enabled": false
+  "editor.minimap.enabled": false,
+  "workbench.editorAssociations": {
+    "git-rebase-todo": "default"
+  }
 }

@@ -10,6 +10,7 @@ main() {
   remove_packages_not_in_brewfile
   install_nvm # nvm doesn't support homebrew
   install_latest_node_with_nvm
+  setup_fzf
   setup_symlinks
   setup_tmux
   setup_yabai
@@ -199,6 +200,12 @@ function install_latest_node_with_nvm {
   else
     notify "FAIL" 1 "Failed to set latest node as default"
   fi
+}
+
+function setup_fzf {
+  notify "INFO" 0 "\nSetting up fzf"
+  $(brew --prefix)/opt/fzf/install
+  notify "SUCCESS" 1 "fzf key bindings and fuzzy completion done"
 }
 
 function setup_symlinks {

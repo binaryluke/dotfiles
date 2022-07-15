@@ -36,3 +36,5 @@ ssh-add -K &> /dev/null
 # Bind NeoVim to vim
 alias vim="nvim"
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
