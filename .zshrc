@@ -24,5 +24,13 @@ ssh-add -K &> /dev/null
 # Bind NeoVim to vim
 alias vim="nvim"
 
+# Git alias
+alias gst="git status"
+alias gd="git diff"
+alias gc="git commit"
+alias gcl="git clone"
+alias ga="git add"
+alias gp="git push"
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
