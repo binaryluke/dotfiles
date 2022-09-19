@@ -212,7 +212,8 @@ function setup_symlinks {
   notify "INFO" 0 "\nSetting up symlinks"
 
   symlink "zsh:zshrc" ${DOTFILES_REPO}/.zshrc $HOME/.zshrc
-  symlink "zsh:zprofile" ${DOTFILES_REPO}/.profile $HOME/.zprofile
+  # Disable zprofile for now as seems not needed and speeds up by ~1s
+  # symlink "zsh:zprofile" ${DOTFILES_REPO}/.profile $HOME/.zprofile
   symlink "zsh:hushlogin" ${DOTFILES_REPO}/.hushlogin $HOME/.hushlogin
   symlink "zsh:inputrc" ${DOTFILES_REPO}/.inputrc $HOME/.inputrc
   symlink "alacritty" ${DOTFILES_REPO}/alacritty $HOME/.config/alacritty
