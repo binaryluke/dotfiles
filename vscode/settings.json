@@ -1,10 +1,13 @@
 {
   "javascript.updateImportsOnFileMove.enabled": "always",
+  "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+  "editor.formatOnPaste": false,
+  "editor.formatOnType": false,
   "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
   "editor.renderWhitespace": "all",
   "editor.insertSpaces": true,
   "editor.tabSize": 2,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "workbench.editor.navigationScope": "editor",
   "workbench.editor.limit.enabled": true,
   "workbench.editor.limit.perEditorGroup": true,
@@ -47,28 +50,14 @@
     "<C-a>": false,
     "<C-f>": false
   },
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "files.associations": {
     "*.ejs": "jsonc"
   },
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "explorer.confirmDelete": false,
-  "go.formatTool": "goimports",
-  "go.useLanguageServer": true,
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "files.exclude": {
     "**/node_modules": true
   },
   "typescript.updateImportsOnFileMove.enabled": "always",
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
   },
@@ -84,5 +73,12 @@
   "editor.minimap.enabled": false,
   "workbench.editorAssociations": {
     "git-rebase-todo": "default"
-  }
+  },
+  "editor.unicodeHighlight.allowedCharacters": {
+    "’": true
+  },
+  "editor.foldingMaximumRegions": 1000,
+  "workbench.enableExperiments": false,
+  "workbench.experimental.editSessions.autoResume": "off",
+  "window.restoreWindows": "none"
 }
