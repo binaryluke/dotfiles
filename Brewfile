@@ -16,30 +16,20 @@ brew "gettext"
 brew "curl"
 # End neovim build from source reqs
 #
-brew "cloc"
-brew "cfssl"
+brew "cloc" # Count Lines of Code
 brew "ffmpeg"
 brew "fzf"
-brew "ghostscript" # required by ImageMagick
 brew "git" # fix terminal slowness: https://apple.stackexchange.com/questions/119864/xcodebuild-firing-after-every-terminal-command
-brew "gnupg"
-brew "graphviz"
+brew "gnupg" # GNU Privacy Guard, complete and free implementation of OpenPGP standard RFC4880
 brew "heroku"
-brew "imagemagick"
-brew "ios-deploy"
 brew "mongodb-community@5.0"
 brew "p7zip"
-brew "pipenv"
-brew "ranger"
-brew "ripgrep"
 brew "stripe/stripe-cli/stripe"
-brew "tree"
 brew "watchman"
 brew "webp"
 brew "wget"
 brew "yt-dlp/taps/yt-dlp"
 brew "diff-so-fancy"
-cask "font-hack-nerd-font"
 # cask "alacritty"
 # cask "amethyst"
 # cask "firefox"

@@ -4,12 +4,10 @@ main() {
   ask_for_sudo
   install_xcode_command_line_tools # next step requires "git" installed with xcode
   clone_dotfiles_repo
-  install_ohmyzsh
   install_homebrew
   install_packages_with_brewfile
   remove_packages_not_in_brewfile
   install_nvm # nvm doesn't support homebrew
-  install_latest_node_with_nvm
   setup_fzf
   setup_symlinks
   setup_tmux
@@ -77,20 +75,6 @@ function pull_latest_in_dotfiles_repo {
     notify "SUCCESS" 2 "Pull successful in ${DOTFILES_REPO} repository"
   else
     notify "FAIL" 1 "Please pull latest changes in ${1} repository manually"
-  fi
-}
-
-function install_ohmyzsh {
-  notify "INFO" 0 "\nInstalling Oh My ZSH"
-  if [ -d ~/.oh-my-zsh ]; then
-    notify "INFO" 1 "Oh My ZSH already exists; skipping"
-  else
-    url=https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-    if /bin/sh -c "$(curl -fsSL ${url})" "" --unattended; then
-      notify "SUCCESS" 2 "Oh My ZSH installed successfully"
-    else
-      notify "FAIL" 2 "Oh My ZSH failed t install"
-    fi
   fi
 }
 
@@ -169,36 +153,6 @@ function install_nvm {
     else
       notify "FAIL" 1 "Nvm failed to clone"
     fi
-  fi
-}
-
-function install_latest_node_with_nvm {
-  notify "INFO" 0 "\nInstalling latest node with nvm"
-  export NVM_DIR="$HOME/.nvm"
-
-  # Source nvm script
-  if source $NVM_DIR/nvm.sh &> /dev/null; then
-    notify "SUCCESS" 1 "Nvm sourced successfully"
-  else
-    notify "FAIL" 1 "Failed to source nvm"
-    exit 1
-  fi
-
-  # Install latest node
-  if nvm install node &> /dev/null; then
-    notify "SUCCESS" 1 "Latest node installed"
-  else
-    notify "FAIL" 1 "Failed to installed latest node"
-    exit 1
-  fi
-
-  # Set latest node as the default
-  # if nvm alias default node &> /dev/null; then
-  #   notify "SUCCESS" 1 "Latest node installed and set as the default"
-  if nvm alias default 16 &> /dev/null; then
-    notify "SUCCESS" 1 "Node 16 is set as the default"
-  else
-    notify "FAIL" 1 "Failed to set latest node as default"
   fi
 }
 
