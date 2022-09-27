@@ -158,7 +158,7 @@ function install_nvm {
 
 function setup_fzf {
   notify "INFO" 0 "\nSetting up fzf"
-  $(brew --prefix)/opt/fzf/install
+  $(brew --prefix)/opt/fzf/install --no-fish --no-bash --update-rc --key-bindings --completion 
   notify "SUCCESS" 1 "fzf key bindings and fuzzy completion done"
 }
 
