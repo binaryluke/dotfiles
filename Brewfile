@@ -6,6 +6,7 @@ tap "homebrew/cask-fonts"
 tap "mongodb/brew"
 tap "yt-dlp/taps"
 tap "heroku/brew"
+tap "stripe/stripe-cli"
 #
 # Start neovim build from source reqs
 brew "ninja"
@@ -22,7 +23,9 @@ brew "ffmpeg"
 brew "fzf"
 brew "git" # fix terminal slowness: https://apple.stackexchange.com/questions/119864/xcodebuild-firing-after-every-terminal-command
 brew "gnupg" # GNU Privacy Guard, complete and free implementation of OpenPGP standard RFC4880
+brew "heroku/brew/heroku-node"
 brew "heroku"
+brew "mongodb/brew/mongodb-database-tools"
 brew "mongodb-community@5.0"
 brew "p7zip"
 brew "stripe/stripe-cli/stripe"
