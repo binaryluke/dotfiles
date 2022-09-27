@@ -80,5 +80,6 @@
   "editor.foldingMaximumRegions": 1000,
   "workbench.enableExperiments": false,
   "workbench.experimental.editSessions.autoResume": "off",
-  "window.restoreWindows": "none"
+  "window.restoreWindows": "none",
+  "workbench.startupEditor": "none"
 }

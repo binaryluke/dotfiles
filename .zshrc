@@ -31,6 +31,13 @@ alias gc="git commit"
 alias gcl="git clone"
 alias ga="git add"
 alias gp="git push"
+alias gst="git status"
+alias glg="git log"
+alias gdca="git diff --cached"
+alias gco="git checkout"
+alias gb="git branch"
+alias gm="git merge"
+alias g="git"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

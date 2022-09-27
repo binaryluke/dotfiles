@@ -16,6 +16,7 @@ brew "gettext"
 brew "curl"
 # End neovim build from source reqs
 #
+brew "cloc"
 brew "cfssl"
 brew "ffmpeg"
 brew "fzf"
