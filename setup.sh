@@ -223,7 +223,7 @@ function setup_macos_login_items {
 }
 
 function remind_manual() {
-  notify "INFO" 0 "\nManual install the following:\nAlacritty\nSnagIt\nAmethyst\nChrome\nLast Pass\nSlack\nObsidian\nVLC\nPacker (after NeoVim build & install)\nWallpapers: https://wall.alphacoders.com/by_sub_category.php?id=173052&name=Girl+Wallpapers\n"
+  notify "INFO" 0 "\nManual install the following:\nAlacritty\nSnagIt\nAmethyst\nChrome\nLast Pass\nSlack\nObsidian\nVLC\nPacker (after NeoVim build & install)\nWallpapers: https://wall.alphacoders.com/by_sub_category.php?id=173052&name=Girl+Wallpapers\nSpace Launcher: https://spacelauncherapp.com/\n"
 }
 
 function notify() {
