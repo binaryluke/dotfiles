@@ -34,6 +34,10 @@
       "before": ["<leader>", "<space>"],
       "commands": [":nohl"]
     }
+    {
+      "before": ["<leader>", "w"],
+      "commands": [":w"]
+    }
   ],
   "vim.visualModeKeyBindingsNonRecursive": [
     {
@@ -45,7 +49,7 @@
       "commands": ["editor.action.outdentLines"]
     }
   ],
-  "vim.leader": ",",
+  "vim.leader": " ",
   "vim.handleKeys": {
     "<C-a>": false,
     "<C-f>": false
