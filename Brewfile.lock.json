@@ -5,16 +5,16 @@
         "revision": "73b77351709591cadc3f4a918b3276ee82cafbad"
       },
       "homebrew/cask": {
-        "revision": "510f1056fda73db92f987b397f7c06e2afd25fff"
+        "revision": "7fb3a286171c8849522e4896f949d187a2593b2d"
       },
       "homebrew/core": {
-        "revision": "45b6d2a25b6b9e780a39acbb1a94c2d2ed208363"
+        "revision": "2c17277b7fbba9449d2ef04a98fb0f70af93d9df"
       },
       "homebrew/services": {
         "revision": "954801711b1562739176e83bc0ce0a265abdea98"
       },
       "homebrew/cask-fonts": {
-        "revision": "8775023bc54bb476d9ed9beef154913aae28a99c"
+        "revision": "acadf2ba9a0e5508e7e945076eb26b7d549236ca"
       },
       "mongodb/brew": {
         "revision": "469f9836e401d272b2db772d2c2aca46fa05b4f7"
@@ -24,6 +24,9 @@
       },
       "heroku/brew": {
         "revision": "e135c620ab55ae195aa89ef348ed5b6d0c16150a"
+      },
+      "stripe/stripe-cli": {
+        "revision": "ca781038b16d157a64f7fd5aeb241b891902f231"
       }
     },
     "brew": {
@@ -710,6 +713,58 @@
             }
           }
         }
+      },
+      "heroku/brew/heroku-node": {
+        "version": "14.19.0",
+        "bottle": false
+      },
+      "mongodb/brew/mongodb-database-tools": {
+        "version": "100.6.0",
+        "bottle": false
+      },
+      "ripgrep": {
+        "version": "13.0.0",
+        "bottle": {
+          "rebuild": 0,
+          "root_url": "https://ghcr.io/v2/homebrew/core",
+          "files": {
+            "arm64_monterey": {
+              "cellar": ":any",
+              "url": "https://ghcr.io/v2/homebrew/core/ripgrep/blobs/sha256:ea67bdf39c1727b2b6b5b5f5110d1736b42b3eb0ec2068aa99903b670545b015",
+              "sha256": "ea67bdf39c1727b2b6b5b5f5110d1736b42b3eb0ec2068aa99903b670545b015"
+            },
+            "arm64_big_sur": {
+              "cellar": ":any",
+              "url": "https://ghcr.io/v2/homebrew/core/ripgrep/blobs/sha256:d3e0ae859dc1e66ebecbc66a8ad1ec2abac59bc707d2305dde66212e71406d36",
+              "sha256": "d3e0ae859dc1e66ebecbc66a8ad1ec2abac59bc707d2305dde66212e71406d36"
+            },
+            "monterey": {
+              "cellar": ":any",
+              "url": "https://ghcr.io/v2/homebrew/core/ripgrep/blobs/sha256:db0260c6be9656c54575a4d82c720fb24141be38a17350d6cddba7be14f104e6",
+              "sha256": "db0260c6be9656c54575a4d82c720fb24141be38a17350d6cddba7be14f104e6"
+            },
+            "big_sur": {
+              "cellar": ":any",
+              "url": "https://ghcr.io/v2/homebrew/core/ripgrep/blobs/sha256:a8f2bd6586de9f7aa36eaaefd36777309f9b5d57f01bf33bf022d715fd3dbb89",
+              "sha256": "a8f2bd6586de9f7aa36eaaefd36777309f9b5d57f01bf33bf022d715fd3dbb89"
+            },
+            "catalina": {
+              "cellar": ":any",
+              "url": "https://ghcr.io/v2/homebrew/core/ripgrep/blobs/sha256:0edcffa1251002e2747020d62a16ae077bd7aa5fb289d351622e0065c9686c40",
+              "sha256": "0edcffa1251002e2747020d62a16ae077bd7aa5fb289d351622e0065c9686c40"
+            },
+            "mojave": {
+              "cellar": ":any",
+              "url": "https://ghcr.io/v2/homebrew/core/ripgrep/blobs/sha256:b57024c0d221249a1f5eaef1069ac90d44e54afdadb146acd117ae23b7de98c6",
+              "sha256": "b57024c0d221249a1f5eaef1069ac90d44e54afdadb146acd117ae23b7de98c6"
+            },
+            "x86_64_linux": {
+              "cellar": ":any_skip_relocation",
+              "url": "https://ghcr.io/v2/homebrew/core/ripgrep/blobs/sha256:34e3140b55f0fb5efb8db70e0709afe091632efaa84465e4c1c9ca3c8afa1bf2",
+              "sha256": "34e3140b55f0fb5efb8db70e0709afe091632efaa84465e4c1c9ca3c8afa1bf2"
+            }
+          }
+        }
       }
     },
     "cask": {
@@ -717,6 +772,12 @@
         "version": "2.2.2",
         "options": {
           "full_name": "font-hack-nerd-font"
+        }
+      },
+      "font-fantasque-sans-mono": {
+        "version": "1.8.0",
+        "options": {
+          "full_name": "font-fantasque-sans-mono"
         }
       }
     }
@@ -726,7 +787,7 @@
       "monterey": {
         "HOMEBREW_VERSION": "3.6.3",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "45b6d2a25b6b9e780a39acbb1a94c2d2ed208363",
+        "Homebrew/homebrew-core": "2c17277b7fbba9449d2ef04a98fb0f70af93d9df",
         "CLT": "14.0.0.0.1.1661618636",
         "Xcode": "13.4.1",
         "macOS": "12.6"
