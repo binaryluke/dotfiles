@@ -19,6 +19,7 @@ brew "curl"
 # End neovim build from source reqs
 #
 brew "cloc" # Count Lines of Code
+brew "fd"
 brew "ffmpeg"
 brew "fzf"
 brew "git" # fix terminal slowness: https://apple.stackexchange.com/questions/119864/xcodebuild-firing-after-every-terminal-command
