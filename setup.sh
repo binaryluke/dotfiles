@@ -3,17 +3,13 @@
 main() {
   ask_for_sudo
   install_xcode_command_line_tools # next step requires "git" installed with xcode
-  clone_dotfiles_repo
   install_homebrew
   install_packages_with_brewfile
   remove_packages_not_in_brewfile
   install_nvm # nvm doesn't support homebrew
   setup_fzf
   setup_symlinks
-  setup_tmux
-  setup_yabai
   setup_macos_system_and_application_preferences
-  setup_macos_login_items
   remind_manual
 }
 
@@ -48,33 +44,6 @@ function install_xcode_command_line_tools {
       notify "FAIL" 1 "Xcode command line tools installation failed"
       exit 1
     fi
-  fi
-}
-
-# Credit: https://github.com/sam-hosseini/dotfiles/blob/92cdd34570629fdb6d3e94865ba6b8bedd99dbe8/bootstrap.sh#L173
-function clone_dotfiles_repo {
-  notify "INFO" 0 "\nCloning dotfiles repository into ${DOTFILES_REPO}"
-  if test -e $DOTFILES_REPO; then
-    notify "INFO" 1 "${DOTFILES_REPO} already exists"
-    pull_latest_in_dotfiles_repo $DOTFILES_REPO
-  else
-    url=https://github.com/binaryluke/dotfiles.git
-    if git clone "$url" $DOTFILES_REPO &> /dev/null && \
-      git -C $DOTFILES_REPO remote set-url origin git@github.com:binaryluke/dotfiles.git &> /dev/null; then
-        notify "SUCCESS" 1 "Dotfiles repository cloned into ${DOTFILES_REPO}"
-    else
-        notify "FAIL" 1 "Dotfiles repository cloning failed"
-        exit 1
-    fi
-  fi
-}
-
-function pull_latest_in_dotfiles_repo {
-  notify "INFO" 1 "Pulling latest changes in ${1} repository"
-  if git -C $1 pull origin master &> /dev/null; then
-    notify "SUCCESS" 2 "Pull successful in ${DOTFILES_REPO} repository"
-  else
-    notify "FAIL" 1 "Please pull latest changes in ${1} repository manually"
   fi
 }
 
@@ -158,23 +127,15 @@ function install_nvm {
 
 function setup_fzf {
   notify "INFO" 0 "\nSetting up fzf"
-  $(brew --prefix)/opt/fzf/install --no-fish --no-bash --update-rc --key-bindings --completion 
+  $(brew --prefix)/opt/fzf/install --no-fish --no-bash --no-update-rc --key-bindings --completion 
   notify "SUCCESS" 1 "fzf key bindings and fuzzy completion done"
 }
 
 function setup_symlinks {
   notify "INFO" 0 "\nSetting up symlinks"
 
-  symlink "zsh:zshrc" ${DOTFILES_REPO}/.zshrc $HOME/.zshrc
-  # Disable zprofile for now as seems not needed and speeds up by ~1s
-  # symlink "zsh:zprofile" ${DOTFILES_REPO}/.profile $HOME/.zprofile
-  symlink "zsh:hushlogin" ${DOTFILES_REPO}/.hushlogin $HOME/.hushlogin
-  symlink "zsh:inputrc" ${DOTFILES_REPO}/.inputrc $HOME/.inputrc
   symlink "alacritty" ${DOTFILES_REPO}/alacritty $HOME/.config/alacritty
   symlink "nvim" ${DOTFILES_REPO}/nvim $HOME/.config/nvim
-  symlink "macos" ${DOTFILES_REPO}/.macos $HOME/.macos
-  symlink "git:config" ${DOTFILES_REPO}/.gitconfig $HOME/.gitconfig
-  symlink "git:ignore" ${DOTFILES_REPO}/.gitignore-global $HOME/.gitignore
 
   # vscode settings
   mkdir -p $HOME/Library/Application\ Support/Code/User/snippets
@@ -184,6 +145,11 @@ function setup_symlinks {
 
   # amethyst settings
   symlink "amethyst:plist" ${DOTFILES_REPO}/amethyst/plist $HOME/Library/Preferences/com.amethyst.Amethyst.plist
+
+  stow -R zsh
+  stow -R macos
+  stow -R bin
+  stow -R git
 
   notify "INFO" 1 "Symlinks setup complete"
 }
@@ -201,14 +167,6 @@ function symlink() {
   fi
 }
 
-function setup_tmux {
-  notify "INFO" 0 "\nNot yet implemented: setup_tmux"
-}
-
-function setup_yabai {
-  notify "INFO" 0 "\nNot yet implemented: setup_yabai"
-}
-
 function setup_macos_system_and_application_preferences {
   notify "INFO" 0 "\nSetting MacOS system and application preferences"
   if source $HOME/.macos; then
@@ -216,10 +174,6 @@ function setup_macos_system_and_application_preferences {
   else
     notify "FAIL" 1 "Preferences failed to apply"
   fi
-}
-
-function setup_macos_login_items {
-  notify "INFO" 0 "\nNot yet implemented: setup_macos_login_items"
 }
 
 function remind_manual() {
