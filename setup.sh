@@ -150,6 +150,7 @@ function setup_symlinks {
   stow -R macos
   stow -R bin
   stow -R git
+  stow -R tmux
 
   notify "INFO" 1 "Symlinks setup complete"
 }
