@@ -1,4 +1,4 @@
-path+=("$HOME/.local/bin/scripts")
+path+=("$HOME/scripts")
 path+=("/usr/local/opt/mysql-client/bin") # mysql client
 path+=("/usr/local/sbin") # Add brew lib to path (WTF? this is the sudo bin folder...)
 typeset -U path
