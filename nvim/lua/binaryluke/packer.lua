@@ -5,6 +5,8 @@ return require('packer').startup(function(use)
   -- lodash of neovim
   use 'nvim-lua/plenary.nvim'
 
+  use 'neovim/nvim-lspconfig'
+
   -- find stuff
   -- todo: read telescope README.md and install optional deps like fd and fzf-native
   use {

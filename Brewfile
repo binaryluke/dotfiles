@@ -26,6 +26,7 @@ brew "git" # fix terminal slowness: https://apple.stackexchange.com/questions/11
 brew "gnupg" # GNU Privacy Guard, complete and free implementation of OpenPGP standard RFC4880
 brew "heroku/brew/heroku-node"
 brew "heroku"
+brew "lua-language-server"
 brew "mongodb/brew/mongodb-database-tools"
 brew "mongodb-community@5.0"
 brew "p7zip"
