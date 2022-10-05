@@ -12,6 +12,9 @@ return require('packer').startup(function(use)
     requires = { {'nvim-lua/plenary.nvim'} }
   }
 
+  -- prettier ftw
+  use 'prettier/vim-prettier'
+
   -- color scheme
   use 'folke/tokyonight.nvim'
 end)
