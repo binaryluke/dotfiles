@@ -1,5 +1,26 @@
 -- Language servers list: https://langserver.org/
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+-- Setup nvim-cmp.
+local cmp = require("cmp")
+
+cmp.setup({
+	mapping = cmp.mapping.preset.insert({
+    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+		["<C-u>"] = cmp.mapping.scroll_docs(-4),
+		["<C-d>"] = cmp.mapping.scroll_docs(4),
+		["<C-Space>"] = cmp.mapping.complete(),
+	}),
+	sources = {
+		-- TODO: check out tabnine
+		{ name = "nvim_lsp" },
+		-- { name = "luasnip" },
+		{ name = "buffer" },
+	},
+})
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -28,11 +49,13 @@ end
 
 -- JavaScript & Typescript: https://github.com/typescript-language-server/typescript-language-server
 require("lspconfig").tsserver.setup{
+  capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities),
   on_attach = on_attach,
 }
 
 -- LUA: https://github.com/sumneko/lua-language-server
 require("lspconfig").sumneko_lua.setup{
+  capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities),
   on_attach = on_attach,
   settings = {
     Lua = {
