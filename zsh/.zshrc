@@ -1,4 +1,5 @@
 path+=("$HOME/scripts")
+path+=("$HOME/.npm-global/bin")
 path+=("/usr/local/opt/mysql-client/bin") # mysql client
 path+=("/usr/local/sbin") # Add brew lib to path (WTF? this is the sudo bin folder...)
 typeset -U path
@@ -25,29 +26,7 @@ alias gb="git branch"
 alias gm="git merge"
 alias g="git"
 
-# Lazyload Node.js - NVM and npm
-# Credit: https://github.com/ryanhanwu/dotfiles/blob/master/.zshrc#L79
-lazynvm() {
-  unset -f nvm node npm
-  export NVM_DIR=~/.nvm
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-  nvm use default
-}
-
-nvm() {
-  lazynvm
-  nvm $@
-}
-
-node() {
-  lazynvm
-  node $@
-}
-
-npm() {
-  lazynvm
-  npm $@
-}
+bindkey -s ^f "tmux-sessionizer\n"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

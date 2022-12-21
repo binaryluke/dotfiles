@@ -9,4 +9,5 @@ vim.keymap.set({'n', 'x'}, 'x', '"_x') -- 'x' sends deleted chars to the black h
 
 vim.keymap.set('n', '<leader>a', ':keepjumps normal! ggVG<cr>') -- select all text in current buffer
 
+vim.keymap.set('n', '<C-f>', '<cmd>silent !tmux neww tmux-sessionizer<CR>') -- open tmux-sessionizer while in vim
 

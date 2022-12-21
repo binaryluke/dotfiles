@@ -5,6 +5,12 @@ return require('packer').startup(function(use)
   -- lodash of neovim
   use 'nvim-lua/plenary.nvim'
 
+  -- treesitter
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate'
+  }
+
   -- lsp and completions
   use 'neovim/nvim-lspconfig'
   use 'hrsh7th/cmp-nvim-lsp'
