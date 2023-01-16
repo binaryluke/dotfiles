@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(fd -ut d -d 1 . ~/work ~/personal ~/para ~/ | fzf)
+    selected=$(fd -ut d -d 1 . ~/work ~/personal ~/learn/books ~/learn/courses ~/learn/tutorials ~/learn/other ~/para ~/ | fzf)
 fi
 
 if [[ -z $selected ]]; then
