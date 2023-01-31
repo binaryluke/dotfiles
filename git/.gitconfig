@@ -3,7 +3,7 @@
 	email = 3931305+binaryluke@users.noreply.github.com
 
 [core]
-	excludesfile = ~/.gitignore
+	excludesfile = ~/dotfiles/git/.gitignore-global
   pager = "diff-so-fancy | less --tabs=4 -RFX"
   editor = nvim
 
@@ -25,7 +25,7 @@
   whitespace = "red reverse"
 
 [commit]
-  template = ~/dotfiles/.git-commit-template
+  template = ~/dotfiles/git/.git-commit-template
 
 [http]
   sslVersion = tlsv1.2
