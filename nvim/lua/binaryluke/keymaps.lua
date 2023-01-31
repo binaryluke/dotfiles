@@ -1,6 +1,8 @@
 vim.keymap.set('n', '<leader>w', '<cmd>write<cr>', {desc = 'Save'}) -- save file
 vim.keymap.set('n', '<leader><space>', ':nohl<cr>', {desc = 'Clear highlight'})
 
+vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
+
 -- Registered related key mappings
 -- More useful info here: https://blog.sanctum.geek.nz/advanced-vim-registers/
 vim.keymap.set({'n', 'x'}, 'cp', '"+y') -- copy to clipboard
