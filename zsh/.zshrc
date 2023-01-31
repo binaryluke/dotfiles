@@ -11,7 +11,7 @@ export ICLOUD="$HOME/Library/Mobile\ Documents/com~apple~CloudDocs"
 # ssh-add -K &> /dev/null
 
 # Aliases
-alias vim="nvim"
+alias vim="/Users/binaryluke/personal/neovim/build/bin/nvim"
 alias gst="git status"
 alias gd="git diff"
 alias gc="git commit"
@@ -25,6 +25,10 @@ alias gco="git checkout"
 alias gb="git branch"
 alias gm="git merge"
 alias g="git"
+
+# Vim journal
+# https://www.youtube.com/watch?v=EJqnWXDJZr0
+alias vj="vim ~/journal/vim.md"
 
 bindkey -s ^f "tmux-sessionizer\n"
 
