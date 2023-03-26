@@ -19,6 +19,14 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 local cmp_sources = lsp.defaults.cmp_sources()
 table.insert(cmp_sources, {name = 'copilot'})
 
+local prioritize = function (entry1, entry2)
+  if entry1.copilot and not entry2.copilot then
+    return true
+  elseif entry2.copilot and not entry1.copilot then
+    return false
+  end
+end
+
 -- Provide `vim` global object in lua files
 -- https://github.com/VonHeikemen/lsp-zero.nvim/blob/v1.x/doc/md/api-reference.md#nvim_workspaceopts
 lsp.nvim_workspace({
@@ -36,14 +44,24 @@ lsp.setup_nvim_cmp({
   completion = {
     completeopt = 'menu,menuone,noinsert,noselect'
   },
-})
+  sorting = {
+    priority_weight = 2,
+    comparators = {
+      prioritize,
 
-lsp.configure('tsserver', {
-  settings = {
-    completions = {
-      completeFunctionCalls = true
-    }
-  }
+      -- Below is the default comparitor list and order for nvim-cmp
+      cmp.config.compare.offset,
+      -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+      cmp.config.compare.exact,
+      cmp.config.compare.score,
+      cmp.config.compare.recently_used,
+      cmp.config.compare.locality,
+      cmp.config.compare.kind,
+      cmp.config.compare.sort_text,
+      cmp.config.compare.length,
+      cmp.config.compare.order,
+    },
+  },
 })
 
 lsp.on_attach(function(client, bufnr)
@@ -61,6 +79,14 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
+
+lsp.configure('tsserver', {
+  on_attach = function(client, bufnr)
+    local opts = {buffer = bufnr, remap = false}
+
+    vim.keymap.set("n", "<leader>f", function() vim.cmd("Prettier") end, opts)
+  end
+})
 
 lsp.setup()
 
