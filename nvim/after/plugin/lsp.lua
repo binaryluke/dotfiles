@@ -1,14 +1,11 @@
 -- Language servers list: https://langserver.org/
 
 local lsp = require("lsp-zero")
-
-lsp.preset("recommended")
-
-lsp.ensure_installed({
-  'tsserver',
-  --'eslint',
-  'sumneko_lua',
-  'gopls',
+lsp.preset({
+  name = 'minimal',
+  set_lsp_keymaps = true,
+  manage_nvim_cmp = true,
+  suggest_lsp_servers = false,
 })
 
 local cmp = require('cmp')
@@ -19,13 +16,34 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
   ['<C-y>'] = cmp.mapping.confirm({ select = true }),
   ['<C-Space>'] = cmp.mapping.complete(),
 })
+local cmp_sources = lsp.defaults.cmp_sources()
+table.insert(cmp_sources, {name = 'copilot'})
+
+-- Provide `vim` global object in lua files
+-- https://github.com/VonHeikemen/lsp-zero.nvim/blob/v1.x/doc/md/api-reference.md#nvim_workspaceopts
+lsp.nvim_workspace({
+  library = vim.api.nvim_get_runtime_file('', true)
+})
 
 lsp.set_preferences({
   sign_icons = { }
 })
 
 lsp.setup_nvim_cmp({
-  mapping = cmp_mappings
+  mapping = cmp_mappings,
+  sources = cmp_sources,
+  preselect = cmp.PreselectMode.None,
+  completion = {
+    completeopt = 'menu,menuone,noinsert,noselect'
+  },
+})
+
+lsp.configure('tsserver', {
+  settings = {
+    completions = {
+      completeFunctionCalls = true
+    }
+  }
 })
 
 lsp.on_attach(function(client, bufnr)
