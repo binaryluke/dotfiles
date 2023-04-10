@@ -134,9 +134,6 @@ function setup_fzf {
 function setup_symlinks {
   notify "INFO" 0 "\nSetting up symlinks"
 
-  symlink "alacritty" ${DOTFILES_REPO}/alacritty $HOME/.config/alacritty
-  symlink "nvim" ${DOTFILES_REPO}/nvim $HOME/.config/nvim
-
   # vscode settings
   mkdir -p $HOME/Library/Application\ Support/Code/User/snippets
   symlink "vscode:settings.json" ${DOTFILES_REPO}/vscode/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
@@ -151,6 +148,8 @@ function setup_symlinks {
   stow -R bin
   stow -R git
   stow -R tmux
+  stow -R alacritty
+  stow -R nvim
 
   notify "INFO" 1 "Symlinks setup complete"
 }
