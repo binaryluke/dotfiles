@@ -1,0 +1,4 @@
+#!/bin/bash
+
+stow -v -R --target=${HOME} zsh git bin tmux nvim alacritty macos
+

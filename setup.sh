@@ -143,14 +143,6 @@ function setup_symlinks {
   # amethyst settings
   symlink "amethyst:plist" ${DOTFILES_REPO}/amethyst/plist $HOME/Library/Preferences/com.amethyst.Amethyst.plist
 
-  stow -R zsh
-  stow -R macos
-  stow -R bin
-  stow -R git
-  stow -R tmux
-  stow -R alacritty
-  stow -R nvim
-
   notify "INFO" 1 "Symlinks setup complete"
 }
 
