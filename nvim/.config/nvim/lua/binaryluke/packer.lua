@@ -76,6 +76,7 @@ return require('packer').startup(function(use)
         filetypes = {
           javascript = true,
           typescript = true,
+          html = true,
           ["."] = false,
         },
         copilot_node_command = 'node', -- Node.js version must be > 16.x
