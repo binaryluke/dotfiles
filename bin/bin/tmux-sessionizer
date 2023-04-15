@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(fd -ut d -d 1 . ~/work ~/personal ~/learn/books ~/learn/courses ~/learn/tutorials ~/learn/other ~/para /Users/binaryluke/Library/Mobile\ Documents/com~apple~CloudDocs ~/ | fzf)
+    selected=$(fdfind -ut d -d 1 . ~/c ~/tmp | fzf)
 fi
 
 if [[ -z "$selected" ]]; then
