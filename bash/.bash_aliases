@@ -30,3 +30,6 @@ alias vj="vim ~/journal/vim.md"
 
 eval "$(nodenv init - bash)"
 
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/github
+
