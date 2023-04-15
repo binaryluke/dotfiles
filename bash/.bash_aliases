@@ -28,8 +28,13 @@ alias g="git"
 # https://www.youtube.com/watch?v=EJqnWXDJZr0
 alias vj="vim ~/journal/vim.md"
 
+# Tmux sessionizer
+bind '"\C-f":"tmux-sessionizer\n"'
+
+# Nodenv
 eval "$(nodenv init - bash)"
 
+# Ssh keys into agent
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/github
 
