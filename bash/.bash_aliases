@@ -1,8 +1,9 @@
 SCRIPTS="${HOME}/scripts"
 NODENV="${HOME}/.nodenv/bin"
 NEOVIM="${HOME}/neovim/bin"
+GOLANG="/usr/local/go/bin"
 
-export PATH="${SCRIPTS}:${NEOVIM}:${NODENV}:${PATH}"
+export PATH="${SCRIPTS}:${NEOVIM}:${NODENV}:${GOLANG}:${PATH}"
 
 # Application Aliases
 #alias vim="/Users/binaryluke/personal/neovim/build/bin/nvim"
