@@ -35,6 +35,9 @@ return require('packer').startup(function(use)
   -- prettier ftw
   use 'prettier/vim-prettier'
 
+  -- Run Jest tests
+  use 'David-Kunz/jester'
+
   -- the kitchen sink
   use {
     'VonHeikemen/lsp-zero.nvim',

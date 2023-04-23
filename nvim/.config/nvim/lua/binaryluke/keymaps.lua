@@ -19,4 +19,11 @@ vim.keymap.set('n', '<leader>cc', ':cclose<cr>')
 vim.keymap.set('n', '<leader>cn', ':cnext<cr>')
 vim.keymap.set('n', '<leader>cp', ':cprev<cr>')
 
+-- Run tests
+vim.keymap.set('n', '<leader>to', ':lua require"jester".run()<CR>') -- test one
+vim.keymap.set('n', '<leader>tf', ':lua require"jester".run_file()<CR>') -- test file
+vim.keymap.set('n', '<leader>tl', ':lua require"jester".run_last()<CR>') -- test one
+vim.keymap.set('n', '<leader>do', ':lua require"jester".debug()<CR>') -- debug one
+vim.keymap.set('n', '<leader>df', ':lua require"jester".debug_file()<CR>') -- debug file
+vim.keymap.set('n', '<leader>dl', ':lua require"jester".debug_last()<CR>') -- debug one
 
