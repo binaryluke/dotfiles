@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/luke/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/home/luke/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/home/luke/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/home/luke/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/luke/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
+local package_path_str = "/Users/binaryluke/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/Users/binaryluke/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/Users/binaryluke/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/Users/binaryluke/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/Users/binaryluke/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -76,32 +76,32 @@ time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   LuaSnip = {
     loaded = true,
-    path = "/home/luke/.local/share/nvim/site/pack/packer/start/LuaSnip",
+    path = "/Users/binaryluke/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
   ["cmp-buffer"] = {
     loaded = true,
-    path = "/home/luke/.local/share/nvim/site/pack/packer/start/cmp-buffer",
+    path = "/Users/binaryluke/.local/share/nvim/site/pack/packer/start/cmp-buffer",
     url = "https://github.com/hrsh7th/cmp-buffer"
   },
   ["cmp-nvim-lsp"] = {
     loaded = true,
-    path = "/home/luke/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
+    path = "/Users/binaryluke/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
   ["cmp-nvim-lua"] = {
     loaded = true,
-    path = "/home/luke/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua",
+    path = "/Users/binaryluke/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua",
     url = "https://github.com/hrsh7th/cmp-nvim-lua"
   },
   ["cmp-path"] = {
     loaded = true,
-    path = "/home/luke/.local/share/nvim/site/pack/packer/start/cmp-path",
+    path = "/Users/binaryluke/.local/share/nvim/site/pack/packer/start/cmp-path",
     url = "https://github.com/hrsh7th/cmp-path"
   },
   cmp_luasnip = {
     loaded = true,
-    path = "/home/luke/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
+    path = "/Users/binaryluke/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
   ["copilot-cmp"] = {
@@ -111,102 +111,122 @@ _G.packer_plugins = {
     },
     loaded = false,
     needs_bufread = false,
-    path = "/home/luke/.local/share/nvim/site/pack/packer/opt/copilot-cmp",
+    path = "/Users/binaryluke/.local/share/nvim/site/pack/packer/opt/copilot-cmp",
     url = "https://github.com/zbirenbaum/copilot-cmp"
   },
   ["copilot.lua"] = {
     after = { "copilot-cmp" },
     commands = { "Copilot" },
-    config = { "\27LJ\2\n›\1\0\0\4\0\v\0\0156\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\0025\3\6\0=\3\a\0025\3\b\0=\3\t\0024\3\0\0=\3\n\2B\0\2\1K\0\1\0\26server_opts_overrides\14filetypes\1\0\3\15typescript\2\15javascript\2\6.\1\15suggestion\1\0\1\fenabled\1\npanel\1\0\1\25copilot_node_command\tnode\1\0\1\fenabled\1\nsetup\fcopilot\frequire\0" },
+    config = { "\27LJ\2\n„\1\0\0\4\0\v\0\0156\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\0025\3\6\0=\3\a\0025\3\b\0=\3\t\0024\3\0\0=\3\n\2B\0\2\1K\0\1\0\26server_opts_overrides\14filetypes\1\0\4\thtml\2\15typescript\2\15javascript\2\6.\1\15suggestion\1\0\1\fenabled\1\npanel\1\0\1\25copilot_node_command\tnode\1\0\1\fenabled\1\nsetup\fcopilot\frequire\0" },
     loaded = false,
     needs_bufread = false,
     only_cond = false,
-    path = "/home/luke/.local/share/nvim/site/pack/packer/opt/copilot.lua",
+    path = "/Users/binaryluke/.local/share/nvim/site/pack/packer/opt/copilot.lua",
     url = "https://github.com/zbirenbaum/copilot.lua"
   },
   ["friendly-snippets"] = {
     loaded = true,
-    path = "/home/luke/.local/share/nvim/site/pack/packer/start/friendly-snippets",
+    path = "/Users/binaryluke/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     url = "https://github.com/rafamadriz/friendly-snippets"
+  },
+  ["git-worktree.nvim"] = {
+    loaded = true,
+    path = "/Users/binaryluke/.local/share/nvim/site/pack/packer/start/git-worktree.nvim",
+    url = "https://github.com/theprimeagen/git-worktree.nvim"
   },
   harpoon = {
     loaded = true,
-    path = "/home/luke/.local/share/nvim/site/pack/packer/start/harpoon",
+    path = "/Users/binaryluke/.local/share/nvim/site/pack/packer/start/harpoon",
     url = "https://github.com/theprimeagen/harpoon"
+  },
+  jester = {
+    loaded = true,
+    path = "/Users/binaryluke/.local/share/nvim/site/pack/packer/start/jester",
+    url = "https://github.com/David-Kunz/jester"
   },
   ["lsp-zero.nvim"] = {
     loaded = true,
-    path = "/home/luke/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
+    path = "/Users/binaryluke/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
     url = "https://github.com/VonHeikemen/lsp-zero.nvim"
   },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
-    path = "/home/luke/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
+    path = "/Users/binaryluke/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
     url = "https://github.com/williamboman/mason-lspconfig.nvim"
   },
   ["mason.nvim"] = {
     loaded = true,
-    path = "/home/luke/.local/share/nvim/site/pack/packer/start/mason.nvim",
+    path = "/Users/binaryluke/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
   ["nvim-cmp"] = {
     loaded = true,
-    path = "/home/luke/.local/share/nvim/site/pack/packer/start/nvim-cmp",
+    path = "/Users/binaryluke/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
-    path = "/home/luke/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
+    path = "/Users/binaryluke/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-treesitter"] = {
     loaded = true,
-    path = "/home/luke/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
+    path = "/Users/binaryluke/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
   ["packer.nvim"] = {
     loaded = true,
-    path = "/home/luke/.local/share/nvim/site/pack/packer/start/packer.nvim",
+    path = "/Users/binaryluke/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
   ["plenary.nvim"] = {
     loaded = true,
-    path = "/home/luke/.local/share/nvim/site/pack/packer/start/plenary.nvim",
+    path = "/Users/binaryluke/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,
-    path = "/home/luke/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
+    path = "/Users/binaryluke/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
     url = "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
   },
-  ["telescope.nvim"] = {
+  ["telescope-live-grep-args.nvim"] = {
     loaded = true,
-    path = "/home/luke/.local/share/nvim/site/pack/packer/start/telescope.nvim",
+    path = "/Users/binaryluke/.local/share/nvim/site/pack/packer/start/telescope-live-grep-args.nvim",
+    url = "https://github.com/nvim-telescope/telescope-live-grep-args.nvim"
+  },
+  ["telescope.nvim"] = {
+    config = { "\27LJ\2\nx\0\0\3\0\5\0\r6\0\0\0'\2\1\0B\0\2\0029\0\2\0'\2\3\0B\0\2\0016\0\0\0'\2\1\0B\0\2\0029\0\2\0'\2\4\0B\0\2\1K\0\1\0\17git_worktree\19live_grep_args\19load_extension\14telescope\frequire\0" },
+    loaded = true,
+    path = "/Users/binaryluke/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
   ["tokyonight.nvim"] = {
     loaded = true,
-    path = "/home/luke/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
+    path = "/Users/binaryluke/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
   },
   ["vim-commentary"] = {
     loaded = true,
-    path = "/home/luke/.local/share/nvim/site/pack/packer/start/vim-commentary",
+    path = "/Users/binaryluke/.local/share/nvim/site/pack/packer/start/vim-commentary",
     url = "https://github.com/tpope/vim-commentary"
   },
   ["vim-fugitive"] = {
     loaded = true,
-    path = "/home/luke/.local/share/nvim/site/pack/packer/start/vim-fugitive",
+    path = "/Users/binaryluke/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
   },
   ["vim-prettier"] = {
     loaded = true,
-    path = "/home/luke/.local/share/nvim/site/pack/packer/start/vim-prettier",
+    path = "/Users/binaryluke/.local/share/nvim/site/pack/packer/start/vim-prettier",
     url = "https://github.com/prettier/vim-prettier"
   }
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+try_loadstring("\27LJ\2\nx\0\0\3\0\5\0\r6\0\0\0'\2\1\0B\0\2\0029\0\2\0'\2\3\0B\0\2\0016\0\0\0'\2\1\0B\0\2\0029\0\2\0'\2\4\0B\0\2\1K\0\1\0\17git_worktree\19live_grep_args\19load_extension\14telescope\frequire\0", "config", "telescope.nvim")
+time([[Config for telescope.nvim]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)

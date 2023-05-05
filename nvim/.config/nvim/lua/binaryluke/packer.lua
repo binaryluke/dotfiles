@@ -17,7 +17,12 @@ return require('packer').startup(function(use)
     'nvim-telescope/telescope.nvim', tag = '0.1.1',
     requires = {
       {'nvim-lua/plenary.nvim'},
-    }
+      { "nvim-telescope/telescope-live-grep-args.nvim" },
+    },
+    config = function ()
+      require("telescope").load_extension("live_grep_args")
+      require("telescope").load_extension("git_worktree")
+    end
   }
 
   -- color scheme
@@ -31,6 +36,10 @@ return require('packer').startup(function(use)
 
   -- harpoon
   use('theprimeagen/harpoon')
+
+  -- git worktrees
+  use('theprimeagen/git-worktree.nvim')
+
 
   -- prettier ftw
   use 'prettier/vim-prettier'
