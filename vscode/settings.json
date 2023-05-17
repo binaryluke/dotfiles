@@ -33,7 +33,7 @@
     {
       "before": ["<leader>", "<space>"],
       "commands": [":nohl"]
-    }
+    },
     {
       "before": ["<leader>", "w"],
       "commands": [":w"]

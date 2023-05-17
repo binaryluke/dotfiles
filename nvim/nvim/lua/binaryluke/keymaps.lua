@@ -11,6 +11,8 @@ vim.keymap.set('n', '<leader>A', ':keepjumps normal! ggVG<cr>') -- select all te
 
 vim.keymap.set('n', '<C-f>', '<cmd>silent !tmux neww tmux-sessionizer<CR>') -- open tmux-sessionizer while in vim
 
+vim.keymap.set('n', '<C-w>x', ':q<CR>')
+
 -- Quickfix list
 -- n.b. :colder, :cnewer to navigate quickfix lists, vim retains up to 10 of them
 -- https://freshman.tech/vim-quickfix-and-location-list/
@@ -26,4 +28,7 @@ vim.keymap.set('n', '<leader>tl', ':lua require"jester".run_last()<CR>') -- test
 vim.keymap.set('n', '<leader>do', ':lua require"jester".debug()<CR>') -- debug one
 vim.keymap.set('n', '<leader>df', ':lua require"jester".debug_file()<CR>') -- debug file
 vim.keymap.set('n', '<leader>dl', ':lua require"jester".debug_last()<CR>') -- debug one
+
+-- Git fugitive
+vim.keymap.set('n', '<leader>gs', ':G<CR>')
 

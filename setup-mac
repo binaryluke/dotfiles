@@ -1,4 +1,15 @@
 #!/bin/bash
 
-stow -v -R --target=${HOME} zsh git bin tmux nvim alacritty macos
+# dotfiles directly in root of home dir
+stow -v -R --target=${HOME} zsh git tmux
+
+# bin folder should not be owned by stow
+mkdir -p $HOME/bin
+stow -v -R --target=${HOME}/bin bin
+
+# stow should control package folders, but not config folder itself
+mkdir -p $HOME/.config
+stow -v -R --target=${HOME}/.config nvim alacritty
+
+stow -v -R --target=${HOME}/Library/Preferences amethyst
 
