@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(fd -ut d -d 1 . ~/code ~/tmp | fzf)
+    selected=$(fd -ut d -d 1 . ~/ ~/code ~/tmp | fzf)
 fi
 
 if [[ -z "$selected" ]]; then
