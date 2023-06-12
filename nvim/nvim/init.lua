@@ -170,9 +170,9 @@ require('lazy').setup({
   {
     'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
-    dependencies = { 'nvim-lua/plenary.nvim', 'theprimeagen/git-worktree.nvim' },
+    dependencies = { "nvim-lua/plenary.nvim", "theprimeagen/git-worktree.nvim", "nvim-telescope/telescope-live-grep-args.nvim" },
     config = function()
-      -- require("telescope").load_extension("live_grep_args")
+      require("telescope").load_extension("live_grep_args")
       require("telescope").load_extension("git_worktree")
     end
   },
@@ -287,7 +287,6 @@ pcall(require('telescope').load_extension, 'fzf')
 
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<leader>/', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
   require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
@@ -296,13 +295,19 @@ vim.keymap.set('n', '<leader>/', function()
   })
 end, { desc = '[/] Fuzzily search in current buffer' })
 
-vim.keymap.set('n', '<c-p>', require('telescope.builtin').git_files, { desc = 'Search Git Files' })
 vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
+vim.keymap.set('n', '<leader>sb', require('telescope.builtin').buffers, { desc = '[S] Existing [B]uffers' })
 vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+vim.keymap.set('n', '<leader>sw', require('telescope').extensions.git_worktree.git_worktrees, { desc = "[S]earch [W]orktree" })
+vim.keymap.set('n', '<leader>cw', require('telescope').extensions.git_worktree.create_git_worktree, { desc = "[C]reate [W]orktree" })
+vim.keymap.set('n', '<c-p>', require('telescope.builtin').git_files, { desc = 'Search Git Files' })
+vim.keymap.set('n', '<C-g>', require('telescope').extensions.live_grep_args.live_grep_args, { desc = "[S]earch by [R]ipgrep" })
+vim.keymap.set('n', '<C-c>', require('telescope.builtin').resume, { desc = "Resume Telescope Search" })
+
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
