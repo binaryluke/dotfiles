@@ -184,18 +184,7 @@ require('lazy').setup({
     build = ':TSUpdate',
   },
 
-  -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
-  --       These are some example plugins that I've included in the kickstart repository.
-  --       Uncomment any of the lines below to enable them.
-  -- require 'kickstart.plugins.autoformat',
-  -- require 'kickstart.plugins.debug',
-
-  -- NOTE: The import below automatically adds your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
-  --    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
-  --    up-to-date with whatever is in the kickstart repo.
-  --
-  --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
-  { import = 'custom.plugins' },
+  'theprimeagen/harpoon'
 }, {})
 
 -- [[ Setting options ]]
@@ -476,6 +465,15 @@ cmp.setup {
     { name = 'nvim_lsp' },
   },
 }
+
+
+-- Harpon
+vim.keymap.set("n", "<leader>ha", require('harpoon.mark').add_file, { desc = "[H]arpoon [A]dd File" })
+vim.keymap.set("n", "<leader>ho", require('harpoon.ui').toggle_quick_menu, { desc = "[H]arpoon [O]pen Menu" })
+vim.keymap.set("n", "<leader>h1", function() require('harpoon.ui').nav_file(1) end, { desc = "[H]arpoon Go To [1]" })
+vim.keymap.set("n", "<leader>h2", function() require('harpoon.ui').nav_file(2) end, { desc = "[H]arpoon Go To [2]" })
+vim.keymap.set("n", "<leader>h3", function() require('harpoon.ui').nav_file(3) end, { desc = "[H]arpoon Go To [3]" })
+vim.keymap.set("n", "<leader>h4", function() require('harpoon.ui').nav_file(4) end, { desc = "[H]arpoon Go To [4]" })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
