@@ -74,61 +74,6 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  LuaSnip = {
-    loaded = true,
-    path = "/Users/lukehoward/.local/share/nvim/site/pack/packer/start/LuaSnip",
-    url = "https://github.com/L3MON4D3/LuaSnip"
-  },
-  ["cmp-buffer"] = {
-    loaded = true,
-    path = "/Users/lukehoward/.local/share/nvim/site/pack/packer/start/cmp-buffer",
-    url = "https://github.com/hrsh7th/cmp-buffer"
-  },
-  ["cmp-nvim-lsp"] = {
-    loaded = true,
-    path = "/Users/lukehoward/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
-    url = "https://github.com/hrsh7th/cmp-nvim-lsp"
-  },
-  ["cmp-nvim-lua"] = {
-    loaded = true,
-    path = "/Users/lukehoward/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua",
-    url = "https://github.com/hrsh7th/cmp-nvim-lua"
-  },
-  ["cmp-path"] = {
-    loaded = true,
-    path = "/Users/lukehoward/.local/share/nvim/site/pack/packer/start/cmp-path",
-    url = "https://github.com/hrsh7th/cmp-path"
-  },
-  cmp_luasnip = {
-    loaded = true,
-    path = "/Users/lukehoward/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
-    url = "https://github.com/saadparwaiz1/cmp_luasnip"
-  },
-  ["copilot-cmp"] = {
-    config = { "\27LJ\2\n9\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\16copilot_cmp\frequire\0" },
-    load_after = {
-      ["copilot.lua"] = true
-    },
-    loaded = false,
-    needs_bufread = false,
-    path = "/Users/lukehoward/.local/share/nvim/site/pack/packer/opt/copilot-cmp",
-    url = "https://github.com/zbirenbaum/copilot-cmp"
-  },
-  ["copilot.lua"] = {
-    after = { "copilot-cmp" },
-    commands = { "Copilot" },
-    config = { "\27LJ\2\nã\1\0\0\4\0\v\0\0156\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\0025\3\6\0=\3\a\0025\3\b\0=\3\t\0024\3\0\0=\3\n\2B\0\2\1K\0\1\0\26server_opts_overrides\14filetypes\1\0\4\15javascript\2\6.\1\thtml\2\15typescript\2\15suggestion\1\0\1\fenabled\1\npanel\1\0\1\25copilot_node_command\tnode\1\0\1\fenabled\1\nsetup\fcopilot\frequire\0" },
-    loaded = false,
-    needs_bufread = false,
-    only_cond = false,
-    path = "/Users/lukehoward/.local/share/nvim/site/pack/packer/opt/copilot.lua",
-    url = "https://github.com/zbirenbaum/copilot.lua"
-  },
-  ["friendly-snippets"] = {
-    loaded = true,
-    path = "/Users/lukehoward/.local/share/nvim/site/pack/packer/start/friendly-snippets",
-    url = "https://github.com/rafamadriz/friendly-snippets"
-  },
   ["git-worktree.nvim"] = {
     loaded = true,
     path = "/Users/lukehoward/.local/share/nvim/site/pack/packer/start/git-worktree.nvim",
@@ -139,30 +84,10 @@ _G.packer_plugins = {
     path = "/Users/lukehoward/.local/share/nvim/site/pack/packer/start/harpoon",
     url = "https://github.com/theprimeagen/harpoon"
   },
-  jester = {
+  ["neodev.nvim"] = {
     loaded = true,
-    path = "/Users/lukehoward/.local/share/nvim/site/pack/packer/start/jester",
-    url = "https://github.com/David-Kunz/jester"
-  },
-  ["lsp-zero.nvim"] = {
-    loaded = true,
-    path = "/Users/lukehoward/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
-    url = "https://github.com/VonHeikemen/lsp-zero.nvim"
-  },
-  ["mason-lspconfig.nvim"] = {
-    loaded = true,
-    path = "/Users/lukehoward/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
-    url = "https://github.com/williamboman/mason-lspconfig.nvim"
-  },
-  ["mason.nvim"] = {
-    loaded = true,
-    path = "/Users/lukehoward/.local/share/nvim/site/pack/packer/start/mason.nvim",
-    url = "https://github.com/williamboman/mason.nvim"
-  },
-  ["nvim-cmp"] = {
-    loaded = true,
-    path = "/Users/lukehoward/.local/share/nvim/site/pack/packer/start/nvim-cmp",
-    url = "https://github.com/hrsh7th/nvim-cmp"
+    path = "/Users/lukehoward/.local/share/nvim/site/pack/packer/start/neodev.nvim",
+    url = "https://github.com/folke/neodev.nvim"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -214,11 +139,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/lukehoward/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
-  },
-  ["vim-prettier"] = {
-    loaded = true,
-    path = "/Users/lukehoward/.local/share/nvim/site/pack/packer/start/vim-prettier",
-    url = "https://github.com/prettier/vim-prettier"
   }
 }
 
@@ -227,25 +147,6 @@ time([[Defining packer_plugins]], false)
 time([[Config for telescope.nvim]], true)
 try_loadstring("\27LJ\2\nx\0\0\3\0\5\0\r6\0\0\0'\2\1\0B\0\2\0029\0\2\0'\2\3\0B\0\2\0016\0\0\0'\2\1\0B\0\2\0029\0\2\0'\2\4\0B\0\2\1K\0\1\0\17git_worktree\19live_grep_args\19load_extension\14telescope\frequire\0", "config", "telescope.nvim")
 time([[Config for telescope.nvim]], false)
-
--- Command lazy-loads
-time([[Defining lazy-load commands]], true)
-pcall(vim.api.nvim_create_user_command, 'Copilot', function(cmdargs)
-          require('packer.load')({'copilot.lua'}, { cmd = 'Copilot', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
-        end,
-        {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'copilot.lua'}, {}, _G.packer_plugins)
-          return vim.fn.getcompletion('Copilot ', 'cmdline')
-      end})
-time([[Defining lazy-load commands]], false)
-
-vim.cmd [[augroup packer_load_aucmds]]
-vim.cmd [[au!]]
-  -- Event lazy-loads
-time([[Defining lazy-load event autocommands]], true)
-vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'copilot.lua'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
-time([[Defining lazy-load event autocommands]], false)
-vim.cmd("augroup END")
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

@@ -34,75 +34,20 @@ return require('packer').startup(function(use)
     run = ':TSUpdate'
   }
 
+  -- prettier ftw
+  use 'prettier/vim-prettier'
+
   -- harpoon
   use('theprimeagen/harpoon')
 
   -- git worktrees
   use('theprimeagen/git-worktree.nvim')
 
-
-  -- prettier ftw
-  use 'prettier/vim-prettier'
-
-  -- Run Jest tests
-  use 'David-Kunz/jester'
-
-  -- the kitchen sink
   use {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v1.x',
+    'neovim/nvim-lspconfig',
     requires = {
-      --- LSP Support
-      {'neovim/nvim-lspconfig'},
-      {'williamboman/mason.nvim'},
-      {'williamboman/mason-lspconfig.nvim'},
-
-      -- Autocompletion
-      {'hrsh7th/nvim-cmp'},
-      {'hrsh7th/cmp-buffer'},
-      {'hrsh7th/cmp-path'},
-      {'saadparwaiz1/cmp_luasnip'},
-      {'hrsh7th/cmp-nvim-lsp'},
-      {'hrsh7th/cmp-nvim-lua'},
-      {'zbirenbaum/copilot-cmp'},
-
-      -- Snippets
-      {'L3MON4D3/LuaSnip'},
-      {'rafamadriz/friendly-snippets'},
+      'folke/neodev.nvim',
     }
   }
-
-  -- CoPilot
-  use {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    config = function()
-      require("copilot").setup({
-        panel = {
-          enabled = false,
-        },
-        suggestion = {
-          enabled = false,
-        },
-        filetypes = {
-          javascript = true,
-          typescript = true,
-          html = true,
-          ["."] = false,
-        },
-        copilot_node_command = 'node', -- Node.js version must be > 16.x
-        server_opts_overrides = {},
-      })
-    end
-  }
-  use {
-    "zbirenbaum/copilot-cmp",
-    after = { "copilot.lua" },
-    config = function ()
-      require("copilot_cmp").setup()
-    end
-  }
-
 end)
 
