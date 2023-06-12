@@ -160,7 +160,15 @@ require('lazy').setup({
   { 'numToStr/Comment.nvim', opts = {} },
 
   -- Fuzzy Finder (files, lsp, etc)
-  { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
+  {
+    'nvim-telescope/telescope.nvim',
+    branch = '0.1.x',
+    dependencies = { 'nvim-lua/plenary.nvim', 'theprimeagen/git-worktree.nvim' },
+    config = function()
+      -- require("telescope").load_extension("live_grep_args")
+      require("telescope").load_extension("git_worktree")
+    end
+  },
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built.
   -- Only load if `make` is available. Make sure you have the system
@@ -184,7 +192,9 @@ require('lazy').setup({
     build = ':TSUpdate',
   },
 
-  'theprimeagen/harpoon'
+  'theprimeagen/harpoon',
+
+  { dir = "~/code/notes" }
 }, {})
 
 -- [[ Setting options ]]
@@ -474,6 +484,19 @@ vim.keymap.set("n", "<leader>h1", function() require('harpoon.ui').nav_file(1) e
 vim.keymap.set("n", "<leader>h2", function() require('harpoon.ui').nav_file(2) end, { desc = "[H]arpoon Go To [2]" })
 vim.keymap.set("n", "<leader>h3", function() require('harpoon.ui').nav_file(3) end, { desc = "[H]arpoon Go To [3]" })
 vim.keymap.set("n", "<leader>h4", function() require('harpoon.ui').nav_file(4) end, { desc = "[H]arpoon Go To [4]" })
+
+-- More keymaps
+vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = "Open [P]roject [V]iew" })
+vim.keymap.set('n', '<leader><space>', ':nohl<cr>', { desc = "Clear highlight" })
+vim.keymap.set('n', '<C-f>', '<cmd>silent !tmux neww tmux-sessionizer<CR>', { desc = "Open tmux sessionizer" })
+
+-- Quickfix list
+-- n.b. :colder, :cnewer to navigate quickfix lists, vim retains up to 10 of them
+-- https://freshman.tech/vim-quickfix-and-location-list/
+vim.keymap.set('n', '<leader>co', ':copen 30<cr>', { desc = "Open quickfix list" })
+vim.keymap.set('n', '<leader>cc', ':cclose<cr>', { desc = "Close quickfix list" })
+vim.keymap.set('n', '<leader>cn', ':cnext<cr>', { desc = "Next item in quickfix list" })
+vim.keymap.set('n', '<leader>cp', ':cprev<cr>', { desc = "Prev item in quickfix list" })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
