@@ -199,6 +199,8 @@ require('lazy').setup({
     build = ':TSUpdate',
   },
 
+  'nvim-treesitter/playground',
+
   'theprimeagen/harpoon',
 
   { dir = "~/code/notes" }
@@ -305,7 +307,7 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim' },
+  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim', 'markdown', 'markdown_inline', 'query' },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = false,
@@ -531,6 +533,10 @@ vim.keymap.set('n', '<leader>co', ':copen 30<cr>', { desc = "Open quickfix list"
 vim.keymap.set('n', '<leader>cc', ':cclose<cr>', { desc = "Close quickfix list" })
 vim.keymap.set('n', '<leader>cn', ':cnext<cr>', { desc = "Next item in quickfix list" })
 vim.keymap.set('n', '<leader>cp', ':cprev<cr>', { desc = "Prev item in quickfix list" })
+
+-- Notes
+require("notes").setup()
+vim.keymap.set("n", "<leader>no", ":NotesOpen<cr>", { desc = "[N]otes [O]pen Link" })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
