@@ -29,6 +29,8 @@ require('lazy').setup({
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
+  'prettier/vim-prettier',
+
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
   {
@@ -165,13 +167,15 @@ require('lazy').setup({
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
--- NOTE: You can change these options as you wish!
 
 -- Set highlight on search
 vim.o.hlsearch = false
 
 -- Make line numbers default
 vim.wo.number = true
+vim.o.relativenumber = true
+vim.o.wrap = false
+vim.o.signcolumn = "yes"
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
@@ -204,6 +208,10 @@ vim.o.completeopt = 'menuone,noselect'
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
+
+-- Prettier config to auto save
+vim.g["prettier#autoformat_config_present"] = 1
+vim.g["prettier#config#config_precedence"] = "prefer-file"
 
 -- [[ Basic Keymaps ]]
 
