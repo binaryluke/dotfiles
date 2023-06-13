@@ -1,3 +1,4 @@
+vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Install package manager
@@ -173,9 +174,9 @@ vim.o.hlsearch = false
 
 -- Make line numbers default
 vim.wo.number = true
-vim.o.relativenumber = true
-vim.o.wrap = false
-vim.o.signcolumn = "yes"
+vim.wo.relativenumber = true
+vim.wo.wrap = false
+vim.wo.signcolumn = "yes"
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
