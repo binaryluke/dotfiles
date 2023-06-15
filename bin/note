@@ -1,0 +1,87 @@
+#!/bin/bash
+
+# Create a new note, link to it from inbox, and then open inbox
+
+# function to prompt the user for a filename
+get_filename() {
+	read -p "Enter a filename: " filename
+	echo "$filename"
+}
+
+# function to create and open a file in the specified directory
+create_note() {
+	# name function arguments
+	local notes_dir=$1
+	local note_filename=$2
+
+	local note_path="$notes_dir/$note_filename.md"
+	local note_title="${note_filename//-/ }"
+
+	cd "$notes_dir" || exit
+
+	# create the note file
+	touch "$note_path"
+
+	# append a markdown title to note file
+	{
+		echo "# $note_title"
+		echo -en "\n"
+		echo -en "\n"
+	} >> "$note_path"
+}
+
+update_inbox() {
+	# name function arguments
+	local notes_dir=$1
+	local note_filename=$2
+
+	local inbox_path="$notes_dir/para-inbox.md"
+
+	cd "$notes_dir" || exit
+
+	# create the inbox note if not exist
+	touch "$inbox_path"
+
+	# append the link to end of note
+	{
+		echo -en "\n"
+		echo "[[$note_filename]]"
+	} >> "$inbox_path"
+}
+
+# Make sure environment variables are set
+if [[ ! -d $SECOND_BRAIN ]]; then
+	echo "\$SECOND_BRAIN environment variable either not set or directory does not exist"
+	exit 1
+fi
+
+# Prompt the user if no filename is provided
+if [[ $# -eq 0 ]]; then
+	filename=$(get_filename)
+fi
+
+# if more than one argument is given, print error message and stop script
+if [[ $# -gt 1 ]]; then
+	echo "Please provide only one filename separated by dashes, without .md extension."
+	echo "Example: zet my-new-note"
+	exit 1
+fi
+
+# set filename to the argument given to the script
+if [[ $# -eq 1 ]]; then
+	filename=$1
+fi
+
+# abort if note already exists
+if [[ -f "$SECOND_BRAIN/$filename.md" ]]; then
+    echo "Note with that name already exists"
+    exit 1
+fi
+
+# create the note
+create_note "$SECOND_BRAIN" "$filename"
+update_inbox "$SECOND_BRAIN" "$filename"
+
+# open inbox in nvim and put cursor over link
+nvim "+" "$SECOND_BRAIN/para-inbox.md" --cmd ":cd %:h"
+

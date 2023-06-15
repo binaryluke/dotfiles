@@ -7,6 +7,9 @@ typeset -U path
 # Export iCloud drive path variable
 export ICLOUD="$HOME/Library/Mobile\ Documents/com~apple~CloudDocs"
 
+# Notes directory for use in scripts
+export SECOND_BRAIN="$HOME/notes"
+
 # Add to keychain quietly (why does nobody else need this in their dotfiles?)
 # ssh-add -K &> /dev/null
 

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Open inbox note with correct working directory
+
+# Make sure environment variables are set
+if [[ ! -d $SECOND_BRAIN ]]; then
+	echo "\$SECOND_BRAIN environment variable either not set or directory does not exist"
+	exit 1
+fi
+
+# open inbox in nvim and put cursor over link
+nvim "$SECOND_BRAIN/para-inbox.md" --cmd ":cd %:h"
+
