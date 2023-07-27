@@ -109,6 +109,14 @@ require('lazy').setup({
         component_separators = '|',
         section_separators = '',
       },
+      section = {
+        lualine_c = {
+          {
+            "filename",
+            path = 1 -- relative path
+          }
+        }
+      }
     },
   },
 
@@ -235,15 +243,28 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
+-- [[ Configure Harpoon ]]
+require("harpoon").setup({
+  menu = {
+    width = vim.api.nvim_win_get_width(0) - 4
+  }
+})
+
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
   defaults = {
     mappings = {
       i = {
-        ['<C-u>'] = false,
-        ['<C-d>'] = false,
+        ['<C-Down>'] = require('telescope.actions').cycle_history_prev,
+        ['<C-Up>'] = require('telescope.actions').cycle_history_next
       },
+    },
+    path_display = {
+      shorten = {
+        len = 1,
+        exclude = {-2, -1}
+      }
     },
     vimgrep_arguments = {
       'rg',
@@ -387,7 +408,7 @@ local on_attach = function(_, bufnr)
   nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
   nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-  nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+  nmap('gr', function () require('telescope.builtin').lsp_references({ fname_width = 70 }) end, '[G]oto [R]eferences')
   nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
   nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
   nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
