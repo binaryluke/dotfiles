@@ -1,6 +1,20 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- Helpers
+local function osExecute(cmd)
+  local handle = io.popen(cmd)
+
+  if handle == nil then
+    return "unknown"
+  end
+
+  local result = handle:read("*l")
+  handle:close()
+
+  return result
+end
+
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -56,8 +70,8 @@ require('lazy').setup({
     'hrsh7th/nvim-cmp',
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
-      'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip',
+      -- 'L3MON4D3/LuaSnip',
+      -- 'saadparwaiz1/cmp_luasnip',
 
       -- Adds LSP completion capabilities
       'hrsh7th/cmp-nvim-lsp',
@@ -84,7 +98,9 @@ require('lazy').setup({
       on_attach = function(bufnr)
         vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk, { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
         vim.keymap.set('n', '<leader>gn', require('gitsigns').next_hunk, { buffer = bufnr, desc = '[G]o to [N]ext Hunk' })
-        vim.keymap.set('n', '<leader>ph', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[P]review [H]unk' })
+        vim.keymap.set('n', '<leader>hp', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[P]review [H]unk' })
+        -- vim.keymap.set('n', '<leader>dr', function() require('gitsigns').reset_base(true) end, { desc = 'Gitsigns [D]iff [R]eset Base' })
+        -- vim.keymap.set('n', '<leader>dc', function() require('gitsigns').change_base('origin/master', true) end, { desc = 'Gitsigns [D]iff [C]eset Base' })
       end,
     },
   },
@@ -109,7 +125,7 @@ require('lazy').setup({
         component_separators = '|',
         section_separators = '',
       },
-      section = {
+      sections = {
         lualine_c = {
           {
             "filename",
@@ -120,16 +136,7 @@ require('lazy').setup({
     },
   },
 
-  {
-    -- Add indentation guides even on blank lines
-    'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help indent_blankline.txt`
-    opts = {
-      char = '┊',
-      show_trailing_blankline_indent = false,
-    },
-  },
+--  { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
@@ -138,10 +145,14 @@ require('lazy').setup({
   {
     'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
-    dependencies = { "nvim-lua/plenary.nvim", "theprimeagen/git-worktree.nvim", "nvim-telescope/telescope-live-grep-args.nvim" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope-live-grep-args.nvim",
+      "nvim-telescope/telescope-github.nvim"
+    },
     config = function()
       require("telescope").load_extension("live_grep_args")
-      require("telescope").load_extension("git_worktree")
+      require("telescope").load_extension("gh")
     end
   },
 
@@ -169,9 +180,7 @@ require('lazy').setup({
 
   'nvim-treesitter/playground',
 
-  'theprimeagen/harpoon',
-
-  { dir = "~/code/notes.nvim", name = "notes.nvim" }
+  'theprimeagen/harpoon'
 }, {})
 
 -- [[ Setting options ]]
@@ -257,15 +266,17 @@ require('telescope').setup {
     mappings = {
       i = {
         ['<C-Down>'] = require('telescope.actions').cycle_history_prev,
-        ['<C-Up>'] = require('telescope.actions').cycle_history_next
+        ['<C-Up>'] = require('telescope.actions').cycle_history_next,
+        ['<C-h>'] = "which_key"
       },
     },
     path_display = {
-      shorten = {
-        len = 1,
-        exclude = {-2, -1}
-      }
+      -- shorten = {
+      --   len = 5,
+      --   exclude = {-2, -1}
+      -- }
     },
+    layout_strategy = "vertical",
     vimgrep_arguments = {
       'rg',
       '--color=never',
@@ -308,18 +319,27 @@ vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
-vim.keymap.set('n', '<leader>sw', require('telescope').extensions.git_worktree.git_worktrees, { desc = "[S]earch [W]orktree" })
-vim.keymap.set('n', '<leader>cw', require('telescope').extensions.git_worktree.create_git_worktree, { desc = "[C]reate [W]orktree" })
 vim.keymap.set('n', '<c-p>', require('telescope.builtin').git_files, { desc = 'Search Git Files' })
 vim.keymap.set('n', '<C-g>', require('telescope').extensions.live_grep_args.live_grep_args, { desc = "[S]earch by [R]ipgrep" })
 vim.keymap.set('n', '<C-c>', require('telescope.builtin').resume, { desc = "Resume Telescope Search" })
-
+vim.keymap.set("n", "<leader>pr", function() require('telescope').extensions.gh.pull_request({
+  search = "status:success draft:false -reviewed-by:@me -author:@me -label:Draft -label:\"WIP\" -label:\"Don't Review\""
+  -- on_attach = function ()
+  --   local baseCommit = osExecute('git merge-base HEAD origin/master')
+  --   require('gitsigns').change_base(baseCommit, true)
+  --   print("hello")
+  -- end
+}) end, { desc = "[P]ull [R]equests ready for review" })
+vim.keymap.set("n", "<leader>gs", function() require('telescope.builtin').git_status() end, { desc = "[G]it [S]tatus" })
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
   ensure_installed = { 'bash', 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'javascript', 'vimdoc', 'vim', 'markdown', 'markdown_inline', 'query' },
+  sync_install = true,
+  ignore_install = {},
+  modules = {},
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = false,
@@ -438,7 +458,7 @@ end
 --  Add any additional override configuration in the following tables. They will be passed to
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
-  -- clangd = {},
+  clangd = {},
   -- gopls = {},
   -- pyright = {},
   -- rust_analyzer = {},
@@ -480,14 +500,14 @@ mason_lspconfig.setup_handlers {
 -- [[ Configure nvim-cmp ]]
 -- See `:help cmp`
 local cmp = require 'cmp'
-local luasnip = require 'luasnip'
-require('luasnip.loaders.from_vscode').lazy_load()
-luasnip.config.setup {}
+-- local luasnip = require 'luasnip'
+-- require('luasnip.loaders.from_vscode').lazy_load()
+-- luasnip.config.setup {}
 
 cmp.setup {
   snippet = {
     expand = function(args)
-      luasnip.lsp_expand(args.body)
+      -- luasnip.lsp_expand(args.body)
     end,
   },
   mapping = cmp.mapping.preset.insert {
@@ -503,8 +523,8 @@ cmp.setup {
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif luasnip.expand_or_locally_jumpable() then
-        luasnip.expand_or_jump()
+      -- elseif luasnip.expand_or_locally_jumpable() then
+        -- luasnip.expand_or_jump()
       else
         fallback()
       end
@@ -512,8 +532,8 @@ cmp.setup {
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif luasnip.locally_jumpable(-1) then
-        luasnip.jump(-1)
+      -- elseif luasnip.locally_jumpable(-1) then
+        -- luasnip.jump(-1)
       else
         fallback()
       end
@@ -521,7 +541,7 @@ cmp.setup {
   },
   sources = {
     { name = 'nvim_lsp' },
-    { name = 'luasnip' },
+    -- { name = 'luasnip' },
   },
 }
 
@@ -539,6 +559,9 @@ vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = "Open [P]roject [V]iew" }
 vim.keymap.set('n', '<leader><space>', ':nohl<cr>', { desc = "Clear highlight" })
 vim.keymap.set('n', '<C-f>', '<cmd>silent !tmux neww tmux-sessionizer<CR>', { desc = "Open tmux sessionizer" })
 
+-- Git
+vim.keymap.set('n', '<C-s>', ':G<cr>', { desc = "Git [S]tatus via Fugitive" })
+
 -- Quickfix list
 -- n.b. :colder, :cnewer to navigate quickfix lists, vim retains up to 10 of them
 -- https://freshman.tech/vim-quickfix-and-location-list/
@@ -546,10 +569,15 @@ vim.keymap.set('n', '<leader>co', ':copen 30<cr>', { desc = "Open quickfix list"
 vim.keymap.set('n', '<leader>cc', ':cclose<cr>', { desc = "Close quickfix list" })
 vim.keymap.set('n', '<leader>cn', ':cnext<cr>', { desc = "Next item in quickfix list" })
 vim.keymap.set('n', '<leader>cp', ':cprev<cr>', { desc = "Prev item in quickfix list" })
+vim.keymap.set('n', '<leader>br', ':Gitsigns reset_base true<CR>', { desc = "[B]ase [R]eset" })
+vim.keymap.set('n', '<leader>bm', ':Gitsigns change_base origin/master true<CR>', { desc = "[B]ase Change origin/[m]aster" })
 
--- Notes
-require("notes").setup()
-vim.keymap.set("n", "<leader>no", ":NotesOpen<cr>", { desc = "[N]otes [O]pen Link" })
-
+vim.keymap.set('n', '<leader>gw', function()
+  local line = vim.api.nvim_win_get_cursor(0)[1]
+  local sha = osExecute('git rev-parse origin/master')
+  local filename = vim.fn.expand('%')
+  local url = vim.env.GITHUB_BLOB_PREFIX .. sha .. '/' .. filename .. '#L' .. line
+  osExecute('open "' .. url .. '"')
+end, { desc = "Open the line in [G]ithub" })
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

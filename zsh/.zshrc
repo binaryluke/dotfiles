@@ -10,11 +10,7 @@ export ICLOUD="$HOME/Library/Mobile\ Documents/com~apple~CloudDocs"
 # Notes directory for use in scripts
 export SECOND_BRAIN="$HOME/notes"
 
-# Add to keychain quietly (why does nobody else need this in their dotfiles?)
-# ssh-add -K &> /dev/null
-
 # Aliases
-alias vim="/Users/binaryluke/personal/neovim/build/bin/nvim"
 alias gst="git status"
 alias gd="git diff"
 alias gc="git commit"
@@ -28,6 +24,7 @@ alias gco="git checkout"
 alias gb="git branch"
 alias gm="git merge"
 alias g="git"
+alias n="nvim"
 
 # Vim journal
 # https://www.youtube.com/watch?v=EJqnWXDJZr0
@@ -39,4 +36,6 @@ bindkey -s ^f "tmux-sessionizer\n"
 
 # nodenv
 eval "$(nodenv init -)"
+
+[ -f ~/.zshrc-local ] && source ~/.zshrc-local
 
