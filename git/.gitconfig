@@ -31,3 +31,5 @@
   sslVersion = tlsv1.2
   postBuffer = 524288000
 
+[init]
+	defaultBranch = main
