@@ -34,8 +34,5 @@ bindkey -s ^f "tmux-sessionizer\n"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# nodenv
-eval "$(nodenv init -)"
-
 [ -f ~/.zshrc-local ] && source ~/.zshrc-local
 
