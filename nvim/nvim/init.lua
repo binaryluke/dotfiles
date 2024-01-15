@@ -106,6 +106,14 @@ require('lazy').setup({
   },
 
   {
+    "sindrets/diffview.nvim", opts = {
+      default_args = {
+        DiffviewOpen = { "--imply-local" }
+      }
+    }
+  },
+
+  {
     -- Theme inspired by Atom
     'navarasu/onedark.nvim',
     priority = 1000,
@@ -579,6 +587,10 @@ vim.keymap.set('n', '<leader>cn', ':cnext<cr>', { desc = "Next item in quickfix 
 vim.keymap.set('n', '<leader>cp', ':cprev<cr>', { desc = "Prev item in quickfix list" })
 vim.keymap.set('n', '<leader>br', ':Gitsigns reset_base true<CR>', { desc = "[B]ase [R]eset" })
 vim.keymap.set('n', '<leader>bm', ':Gitsigns change_base origin/master true<CR>', { desc = "[B]ase Change origin/[m]aster" })
+
+vim.keymap.set('n', '<leader>gdm', function ()
+  vim.cmd('DiffviewOpen origin/HEAD...HEAD --imply-local')
+end, { desc = "[G]it [D]iff [M]aster (origin) in Diffview" })
 
 vim.keymap.set('n', '<leader>gw', function()
   local line = vim.api.nvim_win_get_cursor(0)[1]
