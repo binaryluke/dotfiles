@@ -116,8 +116,8 @@ require('lazy').setup({
 
         -- vim.keymap.set('n', keymap_codereview_prev_hunk, require('gitsigns').prev_hunk, { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
         -- vim.keymap.set('n', keymap_codereview_next_hunk, require('gitsigns').next_hunk, { buffer = bufnr, desc = '[G]o to [N]ext Hunk' })
-        vim.keymap.set('n', keymap_codereview_reset_base, function() require('gitsigns').reset_base(true) end, { buffer = bufnr, desc = 'Gitsigns [D]iff [R]eset Base' })
-        vim.keymap.set('n', keymap_codereview_change_base_originhead, function() require('gitsigns').change_base('origin/HEAD', true) end, { buffer = bufnr, desc = 'Gitsigns [D]iff [C]hange Base to origin/HEAD...HEAD' })
+        vim.keymap.set('n', keymap_codereview_reset_base, function() require('gitsigns').reset_base(true) end, { buffer = bufnr, desc = 'Gitsigns reset base' })
+        vim.keymap.set('n', keymap_codereview_change_base_originhead, function() require('gitsigns').change_base('origin/HEAD', true) end, { buffer = bufnr, desc = 'Gitsigns change base to origin/HEAD' })
       end,
     },
   },
