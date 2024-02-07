@@ -353,12 +353,10 @@ vim.keymap.set('n', '<c-p>', require('telescope.builtin').git_files, { desc = 'S
 vim.keymap.set('n', '<C-g>', require('telescope').extensions.live_grep_args.live_grep_args, { desc = "[S]earch by [R]ipgrep" })
 vim.keymap.set('n', '<C-c>', require('telescope.builtin').resume, { desc = "Resume Telescope Search" })
 vim.keymap.set("n", keymap_codereview_pick_pr, function() require('telescope').extensions.gh.pull_request({
-  search = "status:success draft:false -author:@me -label:Draft -label:\"WIP\" -label:\"Don't Review\""
-  -- on_attach = function ()
-  --   local baseCommit = osExecute('git merge-base HEAD origin/master')
-  --   require('gitsigns').change_base(baseCommit, true)
-  --   print("hello")
-  -- end
+  search = "status:success draft:false -author:@me -label:Draft -label:\"WIP\" -label:\"Don't Review\"",
+  on_attach = function ()
+    require('gitsigns').change_base('origin/HEAD', true)
+  end
 }) end, { desc = "Pick from pull requests ready for review" })
 vim.keymap.set("n", "<leader>gs", function() require('telescope.builtin').git_status() end, { desc = "[G]it [S]tatus" })
 
