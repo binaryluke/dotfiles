@@ -1,3 +1,12 @@
+-- Reference (safe key mappings): https://vim.fandom.com/wiki/Unused_keys
+-- Schema: keymap_[area]_[action]_[details]
+local keymap_codereview_pick_diff_originhead = '<C-r>d'
+local keymap_codereview_pick_pr = '<C-r>p'
+local keymap_codereview_next_hunk = '[c'
+local keymap_codereview_prev_hunk = ']c'
+local keymap_codereview_change_base_originhead = '<C-r>bo'
+local keymap_codereview_reset_base = '<C-r>br'
+
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -96,21 +105,21 @@ require('lazy').setup({
         changedelete = { text = '~' },
       },
       on_attach = function(bufnr)
-        vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk, { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
-        vim.keymap.set('n', '<leader>gn', require('gitsigns').next_hunk, { buffer = bufnr, desc = '[G]o to [N]ext Hunk' })
-        vim.keymap.set('n', '<leader>hp', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[P]review [H]unk' })
-        -- vim.keymap.set('n', '<leader>dr', function() require('gitsigns').reset_base(true) end, { desc = 'Gitsigns [D]iff [R]eset Base' })
-        -- vim.keymap.set('n', '<leader>dc', function() require('gitsigns').change_base('origin/master', true) end, { desc = 'Gitsigns [D]iff [C]eset Base' })
+        local function map(mode, lhs, rhs, opts)
+          opts = vim.tbl_extend('force', {noremap = true, silent = true}, opts or {})
+            vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts)
+        end
+
+        -- Navigation
+        map('n', keymap_codereview_next_hunk, "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", {expr=true, desc = "Next hunk" })
+        map('n', keymap_codereview_prev_hunk, "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", {expr=true, desc = "Prev hunk" })
+
+        -- vim.keymap.set('n', keymap_codereview_prev_hunk, require('gitsigns').prev_hunk, { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
+        -- vim.keymap.set('n', keymap_codereview_next_hunk, require('gitsigns').next_hunk, { buffer = bufnr, desc = '[G]o to [N]ext Hunk' })
+        vim.keymap.set('n', keymap_codereview_reset_base, function() require('gitsigns').reset_base(true) end, { buffer = bufnr, desc = 'Gitsigns [D]iff [R]eset Base' })
+        vim.keymap.set('n', keymap_codereview_change_base_originhead, function() require('gitsigns').change_base('origin/HEAD', true) end, { buffer = bufnr, desc = 'Gitsigns [D]iff [C]hange Base to origin/HEAD...HEAD' })
       end,
     },
-  },
-
-  {
-    "sindrets/diffview.nvim", opts = {
-      default_args = {
-        DiffviewOpen = { "--imply-local" }
-      }
-    }
   },
 
   {
@@ -196,7 +205,12 @@ require('lazy').setup({
 
   'nvim-treesitter/playground',
 
-  'theprimeagen/harpoon'
+  'theprimeagen/harpoon',
+  {
+    'axkirillov/easypick.nvim',
+    commit = '6ea5aef3eceba46a26091e2339c9b51d7e104648',
+    dependencies = 'nvim-telescope/telescope.nvim'
+  }
 }, {})
 
 -- [[ Setting options ]]
@@ -338,14 +352,14 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 vim.keymap.set('n', '<c-p>', require('telescope.builtin').git_files, { desc = 'Search Git Files' })
 vim.keymap.set('n', '<C-g>', require('telescope').extensions.live_grep_args.live_grep_args, { desc = "[S]earch by [R]ipgrep" })
 vim.keymap.set('n', '<C-c>', require('telescope.builtin').resume, { desc = "Resume Telescope Search" })
-vim.keymap.set("n", "<leader>pr", function() require('telescope').extensions.gh.pull_request({
-  search = "status:success draft:false -reviewed-by:@me -author:@me -label:Draft -label:\"WIP\" -label:\"Don't Review\""
+vim.keymap.set("n", keymap_codereview_pick_pr, function() require('telescope').extensions.gh.pull_request({
+  search = "status:success draft:false -author:@me -label:Draft -label:\"WIP\" -label:\"Don't Review\""
   -- on_attach = function ()
   --   local baseCommit = osExecute('git merge-base HEAD origin/master')
   --   require('gitsigns').change_base(baseCommit, true)
   --   print("hello")
   -- end
-}) end, { desc = "[P]ull [R]equests ready for review" })
+}) end, { desc = "Pick from pull requests ready for review" })
 vim.keymap.set("n", "<leader>gs", function() require('telescope.builtin').git_status() end, { desc = "[G]it [S]tatus" })
 
 -- [[ Configure Treesitter ]]
@@ -561,6 +575,40 @@ cmp.setup {
   },
 }
 
+local easypick = require("easypick")
+easypick.setup({
+	pickers = {
+		-- add your custom pickers here
+		-- below you can find some examples of what those can look like
+
+		-- list files inside current folder with default previewer
+		{
+			-- name for your custom picker, that can be invoked using :Easypick <name> (supports tab completion)
+			name = "ls",
+			-- the command to execute, output has to be a list of plain text entries
+			command = "ls",
+			-- specify your custom previwer, or use one of the easypick.previewers
+			previewer = easypick.previewers.default()
+		},
+
+		-- diff current branch with base_branch and show files that changed with respective diffs in preview
+		{
+			name = "changed_files_originhead",
+			command = "git diff --name-only $(git merge-base HEAD " .. 'origin/HEAD' .. " )",
+			previewer = easypick.previewers.branch_diff({base_branch = 'origin/HEAD'})
+		},
+
+		-- list files that have conflicts with diffs in preview
+		{
+			name = "conflicts",
+			command = "git diff --name-only --diff-filter=U --relative",
+			previewer = easypick.previewers.file_diff()
+		},
+	}
+})
+
+-- Code review
+vim.keymap.set("n", keymap_codereview_pick_diff_originhead, ':Easypick changed_files_originhead<CR>', { desc = "Pick changed files against origin/HEAD" })
 
 -- Harpon
 vim.keymap.set("n", "<leader>ha", require('harpoon.mark').add_file, { desc = "[H]arpoon [A]dd File" })
@@ -585,12 +633,6 @@ vim.keymap.set('n', '<leader>co', ':copen 30<cr>', { desc = "Open quickfix list"
 vim.keymap.set('n', '<leader>cc', ':cclose<cr>', { desc = "Close quickfix list" })
 vim.keymap.set('n', '<leader>cn', ':cnext<cr>', { desc = "Next item in quickfix list" })
 vim.keymap.set('n', '<leader>cp', ':cprev<cr>', { desc = "Prev item in quickfix list" })
-vim.keymap.set('n', '<leader>br', ':Gitsigns reset_base true<CR>', { desc = "[B]ase [R]eset" })
-vim.keymap.set('n', '<leader>bm', ':Gitsigns change_base origin/master true<CR>', { desc = "[B]ase Change origin/[m]aster" })
-
-vim.keymap.set('n', '<leader>gdm', function ()
-  vim.cmd('DiffviewOpen origin/HEAD...HEAD --imply-local')
-end, { desc = "[G]it [D]iff [M]aster (origin) in Diffview" })
 
 vim.keymap.set('n', '<leader>gw', function()
   local line = vim.api.nvim_win_get_cursor(0)[1]
