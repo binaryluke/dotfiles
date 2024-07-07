@@ -470,7 +470,7 @@ local servers = {
   -- gopls = {},
   -- pyright = {},
   -- rust_analyzer = {},
-  tsserver = {},
+  vtsls = {},
   marksman = {},
 
   lua_ls = {
