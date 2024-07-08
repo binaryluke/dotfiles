@@ -5,7 +5,7 @@ import:
   - ~/.config/alacritty/tokyonight-moon.yml
 
 window:
-  opacity: 0.9 
+  # opacity: 0.9 
   startup_mode: Windowed
   decorations: Buttonless
   padding:
@@ -32,7 +32,7 @@ font:
     family: Hack Nerd Font Mono
     style: Bold Italic
 
-  size: 16.0
+  size: 18.0
 
 shell:
   program: /bin/zsh
