@@ -1,0 +1,35 @@
+import = ["/Users/lukehoward/.config/alacritty/tokyonight-moon.toml"]
+
+[font]
+size = 18.0
+
+[font.bold]
+family = "Hack Nerd Font Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "Hack Nerd Font Mono"
+style = "Bold Italic"
+
+[font.italic]
+family = "Hack Nerd Font Mono"
+style = "Italic"
+
+[font.normal]
+family = "Hack Nerd Font Mono"
+style = "Regular"
+
+[shell]
+args = ["--login"]
+program = "/bin/zsh"
+
+[window]
+decorations = "Buttonless"
+dynamic_title = true
+startup_mode = "Windowed"
+title = "Alacritty"
+option_as_alt = "Both"
+
+[window.padding]
+x = 10
+y = 10
