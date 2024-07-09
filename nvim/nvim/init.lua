@@ -162,7 +162,7 @@ require('lazy').setup({
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       -- calling `setup` is optional for customization
-      require("fzf-lua").setup({})
+      require("fzf-lua").setup({'fzf-tmux'})
     end
   },
 
@@ -259,7 +259,7 @@ vim.keymap.set('n', '<leader>sb', require('fzf-lua').buffers, { desc = '[S] Exis
 vim.keymap.set('n', '<leader>sf', require('fzf-lua').files, { desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<leader>sd', require('fzf-lua').diagnostics_document, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<c-p>', require('fzf-lua').git_files, { desc = 'Search Git Files' })
-vim.keymap.set('n', '<C-g>', require('fzf-lua').live_grep, { desc = "[S]earch by [R]ipgrep" })
+vim.keymap.set('n', '<C-g>', require('fzf-lua').live_grep_glob, { desc = "[S]earch by [R]ipgrep" })
 vim.keymap.set('n', '<C-c>', require('fzf-lua').resume, { desc = "Resume Search" })
 
 
