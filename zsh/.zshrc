@@ -1,7 +1,4 @@
-path+=("$HOME/bin")
-path+=("$HOME/.npm-global/bin")
-path+=("/usr/local/opt/mysql-client/bin") # mysql client
-path+=("/usr/local/sbin") # Add brew lib to path (WTF? this is the sudo bin folder...)
+path=($HOME/bin $HOME/homebrew/bin $HOME/.npm-global/bin /usr/local/opt/mysql-client/bin /usr/local/sbin $path)
 typeset -U path
 
 ##########

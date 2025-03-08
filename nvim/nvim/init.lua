@@ -176,6 +176,20 @@ require('lazy').setup({
   },
 
   -- 'nvim-treesitter/playground',
+  'github/copilot.vim',
+
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    dependencies = {
+      { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
+      { "nvim-lua/plenary.nvim" }, -- for curl, log and async functions
+    },
+    build = "make tiktoken", -- Only on MacOS or Linux
+    opts = {
+      -- See Configuration section for options
+    },
+    -- See Commands section for default commands if you want to lazy load on them
+  },
 
 }, {})
 
@@ -259,7 +273,7 @@ vim.keymap.set('n', '<leader>sb', require('fzf-lua').buffers, { desc = '[S] Exis
 vim.keymap.set('n', '<leader>sf', require('fzf-lua').files, { desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<leader>sd', require('fzf-lua').diagnostics_document, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<c-p>', require('fzf-lua').git_files, { desc = 'Search Git Files' })
-vim.keymap.set('n', '<C-g>', require('fzf-lua').live_grep_glob, { desc = "[S]earch by [R]ipgrep" })
+vim.keymap.set('n', '<C-g>', function() require('fzf-lua').live_grep_glob({ rg_opts = "--sort=path --column --line-number --no-heading --color=always --smart-case --max-columns=4096 -e"--[[, continue_last_search = true ]] }) end, { desc = "[S]earch by [R]ipgrep" })
 vim.keymap.set('n', '<C-c>', require('fzf-lua').resume, { desc = "Resume Search" })
 
 
@@ -268,6 +282,25 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous dia
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+
+-- CopilotChat keymaps
+vim.keymap.set('n', "<leader>ccq",
+    function()
+      local input = vim.fn.input("Quick Chat: ")
+      if input ~= "" then
+        require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+      end
+    end,
+  { desc = "CopilotChat - Quick chat" }
+)
+
+vim.keymap.set('n', "<leader>ccp",
+    function()
+      local actions = require("CopilotChat.actions")
+      require("CopilotChat.integrations.fzflua").pick(actions.prompt_actions())
+    end,
+  { desc = "CopilotChat - Prompt actions" }
+)
 
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
@@ -379,24 +412,6 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      -- elseif luasnip.expand_or_locally_jumpable() then
-        -- luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      -- elseif luasnip.locally_jumpable(-1) then
-        -- luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
   },
   sources = {
     { name = 'nvim_lsp' },
@@ -473,6 +488,28 @@ require('nvim-treesitter.configs').setup {
     },
   },
 }
+
+-- Function to run the git diff command and pass the output to fzf-lua with preview
+local function git_diff_master_fzf()
+  local fzf = require('fzf-lua')
+  local handle = io.popen('git diff --name-only origin/master...HEAD')
+  local result = handle:read("*a")
+  handle:close()
+  local files = {}
+  for file in result:gmatch("[^\r\n]+") do
+    table.insert(files, file)
+  end
+  fzf.fzf_exec(files, {
+    prompt = 'Git Diff Files> ',
+    preview = 'git diff origin/master...HEAD {} | delta',
+    actions = {
+      ['default'] = fzf.actions.file_edit,
+    },
+  })
+end
+
+-- Create a custom command to call the function
+vim.api.nvim_create_user_command('GitDiffMaster', git_diff_master_fzf, {})
 
 -- Harpon
 vim.keymap.set("n", "<leader>ha", require('harpoon.mark').add_file, { desc = "[H]arpoon [A]dd File" })
