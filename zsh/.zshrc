@@ -1,4 +1,5 @@
-path=($HOME/bin $HOME/homebrew/bin $HOME/.npm-global/bin /usr/local/opt/mysql-client/bin /usr/local/sbin $path)
+# ~/.local/bin is where pipx installs executables
+path=($HOME/bin $HOME/homebrew/bin $HOME/.local/bin $HOME/.npm-global/bin /usr/local/opt/mysql-client/bin /usr/local/sbin $path)
 typeset -U path
 
 ##########
@@ -68,3 +69,7 @@ alias gb="git branch"
 alias gm="git merge"
 alias g="git"
 alias n="nvim"
+
+# For pipx completions
+autoload -U compinit && compinit
+eval "$(register-python-argcomplete pipx)"
