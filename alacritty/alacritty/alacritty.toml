@@ -28,6 +28,11 @@ decorations = "Buttonless"
 dynamic_title = true
 startup_mode = "Windowed"
 title = "Alacritty"
+# option_as_alt should be paired with:
+# defaults write -g ApplePressAndHoldEnabled -bool false
+#
+# This disables the accent popup when holding down keys,
+# which allows us to hold down alt key for continuous resizing.
 option_as_alt = "Both"
 
 [window.padding]

@@ -82,7 +82,6 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
   {
     -- Adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -143,8 +142,6 @@ require('lazy').setup({
       }
     },
   },
-
---  { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
@@ -358,6 +355,7 @@ local servers = {
   -- rust_analyzer = {},
   vtsls = {},
   marksman = {},
+  eslint = {},
 
   lua_ls = {
     Lua = {
@@ -528,6 +526,20 @@ vim.keymap.set('n', '<C-f>', '<cmd>silent !tmux neww tmux-sessionizer<CR>', { de
 
 -- Git
 vim.keymap.set('n', '<C-s>', ':G<cr>', { desc = "Git [S]tatus via Fugitive" })
+
+-- Resize splits with Alt + hjkl
+vim.keymap.set('n', '<A-h>', '<C-w>h', { noremap = true, silent = true })
+vim.keymap.set('n', '<A-j>', '<C-w>j', { noremap = true, silent = true })
+vim.keymap.set('n', '<A-k>', '<C-w>k', { noremap = true, silent = true })
+vim.keymap.set('n', '<A-l>', '<C-w>l', { noremap = true, silent = true })
+vim.keymap.set('n', '<A-H>', ':vertical resize -2<CR>')
+vim.keymap.set('n', '<A-L>', ':vertical resize +2<CR>')
+vim.keymap.set('n', '<A-J>', ':resize -2<CR>')
+vim.keymap.set('n', '<A-K>', ':resize +2<CR>')
+vim.keymap.set('n', '<A-w>', ':w<CR>', { noremap = true, silent = true }) -- Save buffer (Alt + w)
+vim.keymap.set('n', '<A-x>', ':q<CR>', { noremap = true, silent = true }) -- Quit window (Alt + q)
+vim.keymap.set('n', '<A-%>', '<C-w>v<C-w>l', { noremap = true, silent = true }) -- Vertical split (Alt + %)
+vim.keymap.set('n', '<A-">', '<C-w>s<C-w>j', { noremap = true, silent = true }) -- Horizontal split (Alt + ")
 
 -- Quickfix list
 -- n.b. :colder, :cnewer to navigate quickfix lists, vim retains up to 10 of them
