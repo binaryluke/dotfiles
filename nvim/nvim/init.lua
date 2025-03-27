@@ -355,7 +355,6 @@ local servers = {
   -- rust_analyzer = {},
   vtsls = {},
   marksman = {},
-  eslint = {},
 
   lua_ls = {
     Lua = {
@@ -367,6 +366,30 @@ local servers = {
 
 -- Setup neovim lua configuration
 require('neodev').setup()
+
+-- Use local eslint for lsp if available
+-- Make sure to run `npm install -g vscode-langservers-extracted` to install the language server first
+local nvim_lsp = require('lspconfig')
+nvim_lsp.eslint.setup({
+  -- Use the ESLint language server binary installed via npm
+  cmd = { "npx", "vscode-eslint-language-server", "--stdio" },
+  -- Specify file types where ESLint should be active
+  filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+  -- Determine the project root by checking for ESLint config files or a .git directory
+  root_dir = function(fname)
+    return nvim_lsp.util.root_pattern(
+      ".eslintrc",
+      ".eslintrc.js",
+      ".eslintrc.json",
+      ".eslintrc.yaml",
+      ".git"
+    )(fname) or vim.loop.cwd()
+  end,
+  -- Optionally, add settings that the language server might support
+  settings = {
+    format = { enable = true },  -- enable code formatting via ESLint if supported
+  },
+})
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -527,7 +550,8 @@ vim.keymap.set('n', '<C-f>', '<cmd>silent !tmux neww tmux-sessionizer<CR>', { de
 -- Git
 vim.keymap.set('n', '<C-s>', ':G<cr>', { desc = "Git [S]tatus via Fugitive" })
 
--- Split with movement to new pane
+-- Split with movement to new panel
+-- TODO: not working
 vim.keymap.set('n', '<C-w>s', '<C-w>s<C-w>j', { noremap = true, silent = true }) -- default is <C-a>s (but doesn't move)
 vim.keymap.set('n', '<C-w>v', '<C-w>v<C-w>l', { noremap = true, silent = true }) -- default is <C-a>v (but doesn't move)
 
@@ -538,7 +562,8 @@ vim.keymap.set('n', '<A-j>', ':resize -2<CR>') -- default is <C-w>- (not repeata
 vim.keymap.set('n', '<A-k>', ':resize +2<CR>') -- default is <C-w>+ (not repeatable)
 
 -- Close splits with Ctrl + x
-vim.keymap.set('n', '<C-w>x', ':close<CR>') -- default  is <C-w>c
+-- TODO: not working
+vim.keymap.set('n', '<C-w>x', ':close<CR>') -- default is <C-w>c
 
 -- Quickfix list
 -- n.b. :colder, :cnewer to navigate quickfix lists, vim retains up to 10 of them
