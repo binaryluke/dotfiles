@@ -527,6 +527,10 @@ vim.keymap.set('n', '<C-f>', '<cmd>silent !tmux neww tmux-sessionizer<CR>', { de
 -- Git
 vim.keymap.set('n', '<C-s>', ':G<cr>', { desc = "Git [S]tatus via Fugitive" })
 
+-- Split with movement to new pane
+vim.keymap.set('n', '<C-a>s', '<C-w>s<C-w>j', { noremap = true, silent = true }) -- default is <C-a>s (but doesn't move)
+vim.keymap.set('n', '<C-a>v', '<C-w>v<C-w>l', { noremap = true, silent = true }) -- default is <C-a>v (but doesn't move)
+
 -- Resize splits with Alt + hjkl
 vim.keymap.set('n', '<A-h>', ':vertical resize -2<CR>') -- default is <C-w>< (not repeatable)
 vim.keymap.set('n', '<A-l>', ':vertical resize +2<CR>') -- default is <C-w>> (not repeatable)
