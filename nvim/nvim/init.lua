@@ -528,18 +528,13 @@ vim.keymap.set('n', '<C-f>', '<cmd>silent !tmux neww tmux-sessionizer<CR>', { de
 vim.keymap.set('n', '<C-s>', ':G<cr>', { desc = "Git [S]tatus via Fugitive" })
 
 -- Resize splits with Alt + hjkl
-vim.keymap.set('n', '<A-h>', '<C-w>h', { noremap = true, silent = true })
-vim.keymap.set('n', '<A-j>', '<C-w>j', { noremap = true, silent = true })
-vim.keymap.set('n', '<A-k>', '<C-w>k', { noremap = true, silent = true })
-vim.keymap.set('n', '<A-l>', '<C-w>l', { noremap = true, silent = true })
-vim.keymap.set('n', '<A-H>', ':vertical resize -2<CR>')
-vim.keymap.set('n', '<A-L>', ':vertical resize +2<CR>')
-vim.keymap.set('n', '<A-J>', ':resize -2<CR>')
-vim.keymap.set('n', '<A-K>', ':resize +2<CR>')
-vim.keymap.set('n', '<A-w>', ':w<CR>', { noremap = true, silent = true }) -- Save buffer (Alt + w)
-vim.keymap.set('n', '<A-x>', ':q<CR>', { noremap = true, silent = true }) -- Quit window (Alt + q)
-vim.keymap.set('n', '<A-%>', '<C-w>v<C-w>l', { noremap = true, silent = true }) -- Vertical split (Alt + %)
-vim.keymap.set('n', '<A-">', '<C-w>s<C-w>j', { noremap = true, silent = true }) -- Horizontal split (Alt + ")
+vim.keymap.set('n', '<A-h>', ':vertical resize -2<CR>') -- default is <C-w>< (not repeatable)
+vim.keymap.set('n', '<A-l>', ':vertical resize +2<CR>') -- default is <C-w>> (not repeatable)
+vim.keymap.set('n', '<A-j>', ':resize -2<CR>') -- default is <C-w>- (not repeatable)
+vim.keymap.set('n', '<A-k>', ':resize +2<CR>') -- default is <C-w>+ (not repeatable)
+
+-- Close splits with Ctrl + x
+vim.keymap.set('n', '<C-w>x', ':close<CR>') -- default  is <C-w>c
 
 -- Quickfix list
 -- n.b. :colder, :cnewer to navigate quickfix lists, vim retains up to 10 of them
