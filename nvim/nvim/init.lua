@@ -1,19 +1,8 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Helpers
-local function osExecute(cmd)
-  local handle = io.popen(cmd)
-
-  if handle == nil then
-    return "unknown"
-  end
-
-  local result = handle:read("*l")
-  handle:close()
-
-  return result
-end
+local terminal = require('helpers.terminal')
+local exec = require('helpers.exec')
 
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
@@ -61,7 +50,12 @@ require('lazy').setup({
       { 'j-hui/fidget.nvim', opts = {}, tag = 'legacy' },
 
       -- Additional lua configuration, makes nvim stuff amazing!
-      'folke/neodev.nvim',
+      {
+        "folke/neodev.nvim",
+        config = function()
+          require("neodev").setup({})
+        end
+      }
     },
   },
 
@@ -355,8 +349,6 @@ local servers = {
   },
 }
 
--- Setup neovim lua configuration
-require('neodev').setup()
 
 -- Use local eslint for lsp if available
 -- Make sure to run `npm install -g vscode-langservers-extracted` to install the language server first
@@ -381,6 +373,9 @@ nvim_lsp.eslint.setup({
     format = { enable = true },  -- enable code formatting via ESLint if supported
   },
 })
+
+-- Setup neovim lua configuration
+nvim_lsp.lua_ls.setup({})
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -555,6 +550,10 @@ vim.keymap.set('n', '<A-k>', ':resize +2<CR>') -- default is <C-w>+ (not repeata
 -- TODO: not working
 vim.keymap.set('n', '<C-w>x', ':close<CR>') -- default is <C-w>c
 
+-- Toggle terminal
+vim.keymap.set('n', '<leader>t', terminal.toggle, { noremap = true, silent = true })
+vim.keymap.set('t', '<Esc>', terminal.toggle, { noremap = true, silent = true })
+
 -- Quickfix list
 -- n.b. :colder, :cnewer to navigate quickfix lists, vim retains up to 10 of them
 -- https://freshman.tech/vim-quickfix-and-location-list/
@@ -567,10 +566,10 @@ vim.keymap.set('n', '<leader>bm', ':Gitsigns change_base origin/master true<CR>'
 
 vim.keymap.set('n', '<leader>gw', function()
   local line = vim.api.nvim_win_get_cursor(0)[1]
-  local sha = osExecute('git rev-parse origin/master')
+  local sha = exec.run('git rev-parse origin/master')
   local filename = vim.fn.expand('%')
   local url = vim.env.GITHUB_BLOB_PREFIX .. sha .. '/' .. filename .. '#L' .. line
-  osExecute('open "' .. url .. '"')
+  exec.run('open "' .. url .. '"')
 end, { desc = "Open the line in [G]ithub" })
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
