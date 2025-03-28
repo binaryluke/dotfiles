@@ -246,10 +246,6 @@ vim.g["prettier#config#config_precedence"] = "prefer-file"
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
--- Remap for dealing with word wrap
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
@@ -546,7 +542,6 @@ vim.keymap.set('n', '<C-f>', '<cmd>silent !tmux neww tmux-sessionizer<CR>', { de
 vim.keymap.set('n', '<C-s>', ':G<cr>', { desc = "Git [S]tatus via Fugitive" })
 
 -- Split with movement to new panel
--- TODO: not working
 vim.keymap.set('n', '<C-w>s', '<C-w>s<C-w>j', { noremap = true, silent = true }) -- default is <C-a>s (but doesn't move)
 vim.keymap.set('n', '<C-w>v', '<C-w>v<C-w>l', { noremap = true, silent = true }) -- default is <C-a>v (but doesn't move)
 
