@@ -265,6 +265,8 @@ vim.keymap.set('n', '<c-p>', require('fzf-lua').git_files, { desc = 'Search Git 
 vim.keymap.set('n', '<C-g>', function() require('fzf-lua').live_grep_glob({ rg_opts = "--sort=path --column --line-number --no-heading --color=always --smart-case --max-columns=4096 -e"--[[, continue_last_search = true ]] }) end, { desc = "[S]earch by [R]ipgrep" })
 vim.keymap.set('n', '<C-c>', require('fzf-lua').resume, { desc = "Resume Search" })
 
+-- Credit: https://github.com/ThePrimeagen/init.lua/blob/master/lua/theprimeagen/remap.lua#L33C1-L33C38
+vim.keymap.set("i", "<C-c>", "<Esc>")
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
