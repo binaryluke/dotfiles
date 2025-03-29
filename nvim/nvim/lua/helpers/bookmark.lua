@@ -2,7 +2,7 @@
 local M = {}
 
 -- Internal table to store bookmarks.
--- Keys: numbers (1, 2, 3, ...); Values: table with file, line, and col.
+-- Keys: slot numbers; Values: { file, line, col }
 local bookmarks = {}
 
 -- Bookmark the current file and cursor position into a given slot.
@@ -48,5 +48,46 @@ vim.api.nvim_create_autocmd("BufLeave", {
     end
   end
 })
+
+--- Returns a sorted list of bookmarked files.
+-- Each entry is a table with slot, file, line, and col.
+function M.get_bookmarked_files()
+  local list = {}
+  for pos, bm in pairs(bookmarks) do
+    table.insert(list, { slot = pos, file = bm.file, line = bm.line, col = bm.col })
+  end
+  table.sort(list, function(a, b) return a.slot < b.slot end)
+  return list
+end
+
+--- Launches an fzf-lua picker to browse bookmarked files.
+-- Selecting an entry will jump to that bookmark.
+function M.fzf_bookmarks()
+  local fzf = require('fzf-lua')
+  local items = {}
+  local mapping = {}
+
+  local bookmarks_list = M.get_bookmarked_files()
+  for _, bm in ipairs(bookmarks_list) do
+    local display = string.format("%d: %s (line %d)", bm.slot, bm.file, bm.line)
+    table.insert(items, display)
+    mapping[display] = bm.slot
+  end
+
+  fzf.fzf_exec(items, {
+    prompt = 'Bookmarks> ',
+    actions = {
+      ['default'] = function(selected)
+        if selected and #selected > 0 then
+          local sel = selected[1]
+          local pos = mapping[sel]
+          if pos then
+            M.goto(pos)
+          end
+        end
+      end,
+    },
+  })
+end
 
 return M
