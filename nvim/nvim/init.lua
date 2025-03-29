@@ -566,7 +566,7 @@ vim.keymap.set('n', '<A-3>', function() bookmark.goto(3) end, { noremap = true, 
 vim.keymap.set('n', '<A-4>', function() bookmark.goto(4) end, { noremap = true, silent = true})
 
 -- Open fzf-lua bookmark picker
-vim.keymap.set('n', '<A-e>', function() bookmark.fzf_bookmarks() end, { noremap = true, silent = true})
+vim.keymap.set('n', '<C-e>', function() bookmark.fzf_bookmarks() end, { noremap = true, silent = true})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
