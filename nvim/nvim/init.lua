@@ -3,6 +3,7 @@ vim.g.maplocalleader = ' '
 
 local terminal = require('helpers.terminal')
 local exec = require('helpers.exec')
+local bookmark = require('helpers.bookmark')
 
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
@@ -141,13 +142,6 @@ require('lazy').setup({
   { 'numToStr/Comment.nvim', opts = {} },
 
   {
-    'theprimeagen/harpoon',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-    }
-  },
-
-  {
     "ibhagwan/fzf-lua",
     -- optional for icon support
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -249,13 +243,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
   group = highlight_group,
   pattern = '*',
-})
-
--- [[ Configure Harpoon ]]
-require("harpoon").setup({
-  menu = {
-    width = vim.api.nvim_win_get_width(0) - 4
-  }
 })
 
 vim.keymap.set('n', '<leader>sb', require('fzf-lua').buffers, { desc = '[S] Existing [B]uffers' })
@@ -522,14 +509,6 @@ end
 -- Create a custom command to call the function
 vim.api.nvim_create_user_command('GitDiffMaster', git_diff_master_fzf, {})
 
--- Harpon
-vim.keymap.set("n", "<leader>ha", require('harpoon.mark').add_file, { desc = "[H]arpoon [A]dd File" })
-vim.keymap.set("n", "<leader>ho", require('harpoon.ui').toggle_quick_menu, { desc = "[H]arpoon [O]pen Menu" })
-vim.keymap.set("n", "<leader>h1", function() require('harpoon.ui').nav_file(1) end, { desc = "[H]arpoon Go To [1]" })
-vim.keymap.set("n", "<leader>h2", function() require('harpoon.ui').nav_file(2) end, { desc = "[H]arpoon Go To [2]" })
-vim.keymap.set("n", "<leader>h3", function() require('harpoon.ui').nav_file(3) end, { desc = "[H]arpoon Go To [3]" })
-vim.keymap.set("n", "<leader>h4", function() require('harpoon.ui').nav_file(4) end, { desc = "[H]arpoon Go To [4]" })
-
 -- More keymaps
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = "Open [P]roject [V]iew" })
 vim.keymap.set('n', '<leader><space>', ':nohl<cr>', { desc = "Clear highlight" })
@@ -573,5 +552,18 @@ vim.keymap.set('n', '<leader>gw', function()
   local url = vim.env.GITHUB_BLOB_PREFIX .. sha .. '/' .. filename .. '#L' .. line
   exec.run('open "' .. url .. '"')
 end, { desc = "Open the line in [G]ithub" })
+
+-- Set bookmark key mappings.
+vim.keymap.set('n', '<leader>1', function() bookmark.bookmark(1) end, { noremap = true, silent = true})
+vim.keymap.set('n', '<leader>2', function() bookmark.bookmark(2) end, { noremap = true, silent = true})
+vim.keymap.set('n', '<leader>3', function() bookmark.bookmark(3) end, { noremap = true, silent = true})
+vim.keymap.set('n', '<leader>4', function() bookmark.bookmark(4) end, { noremap = true, silent = true})
+
+-- Jump to bookmark key mappings.
+vim.keymap.set('n', '<A-1>', function() bookmark.goto(1) end, { noremap = true, silent = true})
+vim.keymap.set('n', '<A-2>', function() bookmark.goto(2) end, { noremap = true, silent = true})
+vim.keymap.set('n', '<A-3>', function() bookmark.goto(3) end, { noremap = true, silent = true})
+vim.keymap.set('n', '<A-4>', function() bookmark.goto(4) end, { noremap = true, silent = true})
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
