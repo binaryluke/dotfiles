@@ -1,6 +1,12 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- Use a virtualenv for python3, which has the pynvim module installed
+-- On a new system, first run these one time commands:
+-- 1) pipx install --python python3 virtualenv
+-- 2) pipx inject virtualenv pynvim
+vim.g.python3_host_prog = os.getenv("HOME") .. "/.local/pipx/venvs/virtualenv/bin/python"
+
 local terminal = require('helpers.terminal')
 local exec = require('helpers.exec')
 local bookmark = require('helpers.bookmark')
@@ -177,6 +183,8 @@ require('lazy').setup({
   },
 
   -- beancount
+  -- one time step on new system:
+  -- 1) pipx inject virtualenv beancount
   'nathangrigg/vim-beancount'
 }, {})
 
