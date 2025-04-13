@@ -96,9 +96,9 @@ require('lazy').setup({
         changedelete = { text = '~' },
       },
       on_attach = function(bufnr)
-        vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk, { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
-        vim.keymap.set('n', '<leader>gn', require('gitsigns').next_hunk, { buffer = bufnr, desc = '[G]o to [N]ext Hunk' })
-        vim.keymap.set('n', '<leader>hp', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[P]review [H]unk' })
+        vim.keymap.set('n', '<leader>gp', function() require('gitsigns').nav_hunk('prev') end, { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
+        vim.keymap.set('n', '<leader>gn', function() require('gitsigns').nav_hunk('next') end, { buffer = bufnr, desc = '[G]o to [N]ext Hunk' })
+        vim.keymap.set('n', '<leader>hp', function() require('gitsigns').preview_hunk() end, { buffer = bufnr, desc = '[P]review [H]unk' })
         -- vim.keymap.set('n', '<leader>dr', function() require('gitsigns').reset_base(true) end, { desc = 'Gitsigns [D]iff [R]eset Base' })
         -- vim.keymap.set('n', '<leader>dc', function() require('gitsigns').change_base('origin/master', true) end, { desc = 'Gitsigns [D]iff [C]eset Base' })
       end,
@@ -110,7 +110,10 @@ require('lazy').setup({
     'navarasu/onedark.nvim',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'onedark'
+      require('onedark').setup {
+          style = 'dark'
+      }
+      require('onedark').load()
     end,
   },
 

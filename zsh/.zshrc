@@ -1,5 +1,5 @@
 # ~/.local/bin is where pipx installs executables
-path=($HOME/bin $HOME/homebrew/bin $HOME/.local/bin $HOME/.npm-global/bin /usr/local/opt/mysql-client/bin /usr/local/sbin $path)
+path=($HOME/bin $HOME/homebrew/bin $HOME/.local/bin $HOME/.npm-global/bin /opt/homebrew/opt/bison/bin /usr/local/opt/mysql-client/bin /usr/local/sbin $path)
 typeset -U path
 
 ##########
