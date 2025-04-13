@@ -1,7 +1,5 @@
-import = ["/Users/lukehow/.config/alacritty/one-dark.toml"]
-
 [font]
-size = 20.0
+size = 26.0
 
 [font.bold]
 family = "Hack Nerd Font Mono"
@@ -19,7 +17,7 @@ style = "Italic"
 family = "Hack Nerd Font Mono"
 style = "Regular"
 
-[shell]
+[terminal.shell]
 args = ["--login"]
 program = "/bin/zsh"
 
@@ -38,3 +36,32 @@ option_as_alt = "Both"
 [window.padding]
 x = 10
 y = 10
+
+# Colors (One Dark)
+# One Dark theme for Alacritty
+# https://github.com/alacritty/alacritty-theme/blob/master/themes/one_dark.toml
+# Default colors
+[colors.primary]
+background = '#282c34'
+foreground = '#abb2bf'
+# Normal colors
+[colors.normal]
+black   = '#1e2127'
+red     = '#e06c75'
+green   = '#98c379'
+yellow  = '#d19a66'
+blue    = '#61afef'
+magenta = '#c678dd'
+cyan    = '#56b6c2'
+white   = '#abb2bf'
+# Bright colors
+[colors.bright]
+black   = '#5c6370'
+red     = '#e06c75'
+green   = '#98c379'
+yellow  = '#d19a66'
+blue    = '#61afef'
+magenta = '#c678dd'
+cyan    = '#56b6c2'
+white   = '#ffffff'
+
