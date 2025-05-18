@@ -154,10 +154,6 @@ require('lazy').setup({
     "ibhagwan/fzf-lua",
     -- optional for icon support
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function()
-      -- calling `setup` is optional for customization
-      require("fzf-lua").setup({'fzf-tmux'})
-    end
   },
 
   {
@@ -377,6 +373,18 @@ nvim_lsp.eslint.setup({
 -- Setup neovim lua configuration
 nvim_lsp.lua_ls.setup({})
 
+-- Setup swift configuration
+-- https://www.swift.org/documentation/articles/zero-to-swift-nvim.html
+nvim_lsp.sourcekit.setup {
+    capabilities = {
+        workspace = {
+            didChangeWatchedFiles = {
+                dynamicRegistration = true,
+            },
+        },
+    },
+}
+
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
@@ -498,6 +506,31 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
+-- RunFile command
+vim.api.nvim_create_user_command("RunFile", function()
+  local filepath = vim.fn.expand("%:p")
+  local ext = vim.fn.expand("%:e")
+
+  if ext == "js" or ext == "cjs" or ext == "mjs" then
+    vim.fn.jobstart({ "node", filepath }, {
+      stdout_buffered = true,
+      stderr_buffered = true,
+      on_stdout = function(_, data)
+        if data then
+          vim.api.nvim_echo({{table.concat(data, "\n"), "Normal"}}, true, {})
+        end
+      end,
+      on_stderr = function(_, data)
+        if data then
+          vim.api.nvim_echo({{table.concat(data, "\n"), "ErrorMsg"}}, true, {})
+        end
+      end,
+    })
+  else
+    vim.api.nvim_echo({{"Unsupported file type: " .. ext, "WarningMsg"}}, true, {})
+  end
+end, {})
+
 -- Function to run the git diff command and pass the output to fzf-lua with preview
 local function git_diff_master_fzf()
   local fzf = require('fzf-lua')
@@ -516,6 +549,15 @@ local function git_diff_master_fzf()
     },
   })
 end
+
+require("fzf-lua").setup('fzf-tmux', {
+  winopts = {
+    preview = {
+      layout = 'vertical',
+      vertical = 'down:50%',
+    }
+  }
+})
 
 -- Create a custom command to call the function
 vim.api.nvim_create_user_command('GitDiffMaster', git_diff_master_fzf, {})
