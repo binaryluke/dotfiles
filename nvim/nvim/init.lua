@@ -290,6 +290,11 @@ vim.keymap.set('n', "<leader>ccp",
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(_, bufnr)
+  if vim.b[bufnr].user_lsp_attached then
+    return
+  end
+  vim.b[bufnr].user_lsp_attached = true
+
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
   -- many times.
@@ -329,82 +334,42 @@ local on_attach = function(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 end
 
--- Enable the following language servers
---  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
---
---  Add any additional override configuration in the following tables. They will be passed to
---  the `settings` field of the server config. You must look up that documentation yourself.
-local servers = {
-  clangd = {},
-  vtsls = {},
-  lua_ls = {
+-- nvim-cmp supports additional completion capabilities, so broadcast that to servers
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
+  callback = function(args)
+    local client = args.data and vim.lsp.get_client_by_id(args.data.client_id) or nil
+    on_attach(client, args.buf)
+  end,
+})
+
+vim.lsp.config('*', {
+  capabilities = capabilities,
+})
+
+vim.lsp.config('lua_ls', {
+  settings = {
     Lua = {
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
     },
   },
-}
-
-
--- Use local eslint for lsp if available
--- Make sure to run `npm install -g vscode-langservers-extracted` to install the language server first
-local nvim_lsp = require('lspconfig')
-nvim_lsp.eslint.setup({
-  -- Use the ESLint language server binary installed via npm
-  cmd = { "npx", "vscode-eslint-language-server", "--stdio" },
-  -- Specify file types where ESLint should be active
-  filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-  -- Determine the project root by checking for ESLint config files or a .git directory
-  root_dir = function(fname)
-    return nvim_lsp.util.root_pattern(
-      ".eslintrc",
-      ".eslintrc.js",
-      ".eslintrc.json",
-      ".eslintrc.yaml",
-      ".git"
-    )(fname) or vim.loop.cwd()
-  end,
-  -- Optionally, add settings that the language server might support
-  settings = {
-    format = { enable = true },  -- enable code formatting via ESLint if supported
-  },
 })
 
--- Setup neovim lua configuration
-nvim_lsp.lua_ls.setup({})
+local mason_servers = { 'clangd', 'vtsls', 'lua_ls', 'eslint' }
+local enabled_servers = { 'clangd', 'vtsls', 'lua_ls', 'eslint', 'sourcekit' }
 
--- Setup swift configuration
--- https://www.swift.org/documentation/articles/zero-to-swift-nvim.html
-nvim_lsp.sourcekit.setup {
-    capabilities = {
-        workspace = {
-            didChangeWatchedFiles = {
-                dynamicRegistration = true,
-            },
-        },
-    },
+require('mason-lspconfig').setup {
+  ensure_installed = mason_servers,
+  automatic_enable = true
 }
 
--- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
--- Ensure the servers above are installed
-local mason_lspconfig = require 'mason-lspconfig'
-
-mason_lspconfig.setup {
-  ensure_installed = vim.tbl_keys(servers),
-}
-
-mason_lspconfig.setup_handlers {
-  function(server_name)
-    require('lspconfig')[server_name].setup {
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = servers[server_name],
-    }
-  end,
-}
+for _, server_name in ipairs(enabled_servers) do
+  vim.lsp.enable(server_name)
+end
 
 -- [[ Configure nvim-cmp ]]
 -- See `:help cmp`
