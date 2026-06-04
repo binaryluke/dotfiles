@@ -256,7 +256,7 @@ vim.keymap.set('n', '<leader>sb', require('fzf-lua').buffers, { desc = '[S] Exis
 vim.keymap.set('n', '<leader>sf', require('fzf-lua').files, { desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<leader>sd', require('fzf-lua').diagnostics_document, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<c-p>', require('fzf-lua').git_files, { desc = 'Search Git Files' })
-vim.keymap.set('n', '<C-g>', function() require('fzf-lua').live_grep_glob({ rg_opts = "--sort=path --column --line-number --no-heading --color=always --smart-case --max-columns=4096 -e"--[[, continue_last_search = true ]] }) end, { desc = "[S]earch by [R]ipgrep" })
+vim.keymap.set('n', '<C-g>', function() require('fzf-lua').live_grep({ rg_opts = "--sort=path --column --line-number --no-heading --color=always --smart-case --max-columns=4096 -e"--[[, continue_last_search = true ]] }) end, { desc = "[S]earch by [R]ipgrep" })
 vim.keymap.set('n', '<C-c>', require('fzf-lua').resume, { desc = "Resume Search" })
 
 -- Credit: https://github.com/ThePrimeagen/init.lua/blob/master/lua/theprimeagen/remap.lua#L33C1-L33C38
