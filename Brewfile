@@ -14,7 +14,7 @@ brew "git" # fix terminal slowness: https://apple.stackexchange.com/questions/11
 brew "gnupg" # GNU Privacy Guard, complete and free implementation of OpenPGP standard RFC4880
 brew "lua-language-server"
 brew "mkcert"
-brew "mongodb-community@8.0"
+brew "mongodb-community@5.0"
 # brew "p7zip"
 brew "ripgrep"
 brew "stow"
