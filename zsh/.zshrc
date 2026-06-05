@@ -1,5 +1,5 @@
 # ~/.local/bin is where pipx installs executables
-path=($HOME/bin $HOME/homebrew/bin $HOME/.local/bin $HOME/.npm-global/bin /opt/homebrew/opt/bison/bin /usr/local/opt/mysql-client/bin /usr/local/sbin $path)
+path=($HOME/bin $HOME/homebrew/bin $HOME/.local/bin $HOME/.npm-global/bin $HOME/.opencode/bin /opt/homebrew/opt/bison/bin /usr/local/opt/mysql-client/bin /usr/local/sbin $HOME/Library/Android/sdk/platform-tools $path)
 typeset -U path
 
 ##########
@@ -73,3 +73,9 @@ alias n="nvim"
 # For pipx completions
 autoload -U compinit && compinit
 eval "$(register-python-argcomplete pipx)"
+
+# Try
+eval "$(try init ~/code/tries)"
+
+source $HOME/.zshrc-local
+
