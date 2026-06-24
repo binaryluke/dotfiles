@@ -1,0 +1,44 @@
+#!/usr/bin/env node
+
+const usage = "Usage: unix-to-iso <unix-time-seconds-or-milliseconds>"
+const input = process.argv[2]
+
+if (process.argv.length !== 3) {
+  console.error(usage)
+  process.exit(1)
+}
+
+if (!/^-?\d+(\.\d+)?$/.test(input)) {
+  console.error("Timestamp must be numeric")
+  console.error(usage)
+  process.exit(1)
+}
+
+const timestamp = Number(input)
+const milliseconds = Math.abs(timestamp) < 1e12 ? timestamp * 1000 : timestamp
+const date = new Date(milliseconds)
+
+if (!Number.isFinite(timestamp) || Number.isNaN(date.getTime())) {
+  console.error("Timestamp is out of range")
+  process.exit(1)
+}
+
+const pad = (value, length = 2) => String(value).padStart(length, "0")
+const year = pad(date.getFullYear(), 4)
+const month = pad(date.getMonth() + 1)
+const day = pad(date.getDate())
+const hour = pad(date.getHours())
+const minute = pad(date.getMinutes())
+const second = pad(date.getSeconds())
+const millisecond = date.getMilliseconds()
+const fractional = millisecond === 0 ? "" : `.${pad(millisecond, 3)}`
+
+const offsetMinutes = -date.getTimezoneOffset()
+const offsetSign = offsetMinutes >= 0 ? "+" : "-"
+const absoluteOffsetMinutes = Math.abs(offsetMinutes)
+const offsetHour = pad(Math.floor(absoluteOffsetMinutes / 60))
+const offsetMinute = pad(absoluteOffsetMinutes % 60)
+
+console.log(
+  `${year}-${month}-${day}T${hour}:${minute}:${second}${fractional}${offsetSign}${offsetHour}:${offsetMinute}`,
+)
